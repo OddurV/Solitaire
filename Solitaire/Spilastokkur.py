@@ -62,36 +62,3 @@ class Spilastokkur:
 	#Legg spil í bunkann
 	def Leggja(self,spil):
 		self.listi.append(spil)
-
-#Bunki
-class Bunki:
-	#Bunki af spilum, byrjar tómur.
-	def __init__(self):
-		self.listi=[]
-		
-	#Fall sem skilar spili úr bunkanum á þægilegan hátt
-	def __getitem__(self,num):
-		return self.listi[num]
-		
-	#Fall sem skilar lengd bunkans
-	def __len__(self):
-		return len(self.listi)
-		
-	#Legg spil í bunkann
-	def Leggja(self,spil):
-		self.listi.append(spil)
-	
-	#Tek spil úr bunkanum
-	def Taka(self):
-		x=self.listi[len(self)-1]
-		del self.listi[len(self)-1]
-		return x
-	
-	#Tek spil úr bunkanum
-	def Taka(self,num1,num2):
-		x=[]
-		for i in range(num1,num2,1):#Ath, kannski á þetta að vera (num2-1)?
-			x.append(self.listi[i])
-		for j in range(num2,num1,-1):#Ath, kannski á þetta að vera (num2-1)?
-			del self.listi[j]
-		return x
