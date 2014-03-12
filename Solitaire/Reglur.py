@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import Spilastokkur
+import Spilari
 
 #Fall sem athugar hvort að leikurinn er löglegur
 def legalMove():
