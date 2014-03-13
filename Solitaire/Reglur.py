@@ -12,7 +12,14 @@ import Spilastokkur
 #   er á bilinu num1 til num2, úr bunka 1 og í bunka 2.
 #   Annars er False skilað
 def legalMove(Bunki1,Bunki2,num1,num2):
-	pass
+	x=Bunki1[num1]
+	y=Bunki2[len(Bunki2)-1]
+	check1=(x.gildi==y.gildi+1)
+	if x.sort=="H" or x.sort=="T":
+		check2=(y.sort=="S" or y.sort=="L")
+	else:
+		check2=(y.sort=="H" or y.sort=="T")
+	return check1 and check2
 
 #Fall sem athugar hvort að leikmaðurinn hefur sigrað
 #N: Sigra(G)
