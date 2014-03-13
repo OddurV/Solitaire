@@ -29,6 +29,10 @@ class Spil:
 class Spilastokkur:
 	#Fastayrðing gagna:
 	#Spilastokkurinn inniheldur lista sem byrjar með 52 spilum
+
+	#N: S=Spilastokkur()
+	#F: Ekkert
+	#E: S er nýr spilastokkur með 52 spilum í handahófskenndri röð
 	def __init__(self):
 		self.listi=[]
 		p="Myndir/"
@@ -63,7 +67,7 @@ class Spilastokkur:
 	
 	#Fall sem víxlar tveimur spilum í stokknum
 	#N: Spilastokkur.Vixla(num1,num2)
-	#F: num1 og num2 eru heiltölur, 0<={num1,num2}<len(Spilastokkur)
+	#F: num1 og num2 eru heiltölur, 0<=num1<=num2<len(Spilastokkur)
 	#E: það er búið að víxla spilum númer num1 og num2
 	def Vixla(self,numer1,numer2):
 		breyta=[self.listi[numer1].sort,self.listi[numer1].gildi]
