@@ -15,11 +15,11 @@ def legalMove(Bunki1,Bunki2,num1,num2):
 	pass
 
 #Fall sem athugar hvort að leikmaðurinn hefur sigrað
-#N: Sigra(G1,G2,G3,G4)
-#F: G1-4 eru listarnir sem öll spilin eiga að enda í
+#N: Sigra(G)
+#F: G er listi af listunum sem öll spilin eiga að enda í
 #E: Skilar True ef það eru 13 spil í hverjum lista, annars False
-def Sigra(G1,G2,G3,G4):
-	pass
+def Sigra(G):
+	return len(G[0])==len(G[1]) and len(G[1])==len(G[2]) and len(G[2])==len(G[3]) and len(G[0])==13
 
 #Fall sem athugar hvort að leikmaðurinn hefur tapað
 #N: Tapa(?)
