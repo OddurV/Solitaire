@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 import Spilastokkur
 
+#Leikreglur
+
 #Fall sem athugar hvort að leikurinn er löglegur
-def legalMove():
-    pass
+#Skilar True eða False
+def legalMove(Bunki1,Bunki2,num1,num2):
+	pass
 
 #Fall sem athugar hvort að leikmaðurinn hefur sigrað
 def Sigra():
-    pass
+	pass
 
 #Fall sem athugar hvort að leikmaðurinn hefur tapað
 def Tapa():
-    pass
-        
+	pass
+	      
