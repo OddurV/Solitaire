@@ -45,10 +45,14 @@ class Spilari:
 		else:
 			E.append(S.Taka())
 
-	#
+	#Fall sem setur endurvinnslubunkann aftur í spilastokkinn
 	def Endurvinna(S,E):
 		for i in range(0,len(E)-1,1):
 			S.Leggja(E.pop())
 		
-	def Hreyfa():
-		pass
+	#Fall sem hreyfir spil úr einum bunka í annan
+	def Hreyfa(Bunki1,Bunki2,num1,num2):
+		if Reglur.legalMove(Bunki1,Bunki2,num1,num2):
+			Bunki2.append(Bunki1.pop(num1,num2))
+		else:
+			Prompt.villa()
