@@ -31,7 +31,7 @@ class Spilari:
 				UB[i].append(S.Taka())
 				
 		#"sný upp" efstu spilunum í UB og set þau í samsvarandi lista í B
-		for in in range(7):
+		for i in range(7):
 			B[i].append(UB[i].pop())
 		
 	#Dreg spil úr spilastokknum og set það efst í endurvinnslubunkann
@@ -71,6 +71,6 @@ class Spilari:
 			for i in range(num2-num1):
 				temp.append(Bunki1.pop())
 			for i in range(num2-num1):
-				Bunki2.append(temp.pop))
+				Bunki2.append(temp.pop())
 		else:
 			Prompt.Villa()
