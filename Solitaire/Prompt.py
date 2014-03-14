@@ -7,23 +7,34 @@
 #F: Ekkert
 #E: Staða spilsins 
 def Stada(Spilari):
+	#Spilastokkurinn
 	print "Fjöldi spila í spilastokknum: ", len(Spilari.S)
+	
+	#Endurvinnslubunkinn
 	if len(Spilari.E)==0:
 		print "[]"
 	else:
 		print "E: ",Spilari.E[len(Spilari.E)]
+	
 	print ""
+	
+	#Strengjaframsetning á undirbunkunum
 	tempUB=[[],[],[],[],[],[],[]]
 	for i in range(7):
 		for j in range(len(Spilari.UB[i])):
 			tempUB[i]=str(tempUB[i])+"[*] "
+	#Strengjaframsetning á bunkunum
 	tempB=[[],[],[],[],[],[],[]]
 	for i in range(7):
 		for j in range(len(Spilari.B[i])):
 			tempB[i]=str(tempB[i])+str(Spilari.B[i][j])+" "
+	#Sýni undirbunkana og bunkana saman
 	for i in range(7):
 		print str(tempUB[i])+" "+str(tempB[i])
+	
 	print ""
+	
+	#Sýni efstu spilin í grunninum
 	if len(Spilari.G[0])==0:
 		print "[]"
 	else:
