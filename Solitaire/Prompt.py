@@ -8,23 +8,38 @@
 #E: Staða spilsins 
 def Stada(Spilari):
 	print "Fjöldi spila í spilastokknum: ", len(Spilari.S)
-	print "E: ",Spilari.E[len(Spilari.E)]
+	if len(Spilari.E)==0:
+		print "[]"
+	else:
+		print "E: ",Spilari.E[len(Spilari.E)]
 	print ""
 	tempUB=[[],[],[],[],[],[],[]]
 	for i in range(7):
 		for j in range(len(Spilari.UB[i])):
-			tempUB[i]=tempUB[i]+"[*] "
+			tempUB[i]=str(tempUB[i])+"[*] "
 	tempB=[[],[],[],[],[],[],[]]
 	for i in range(7):
 		for j in range(len(Spilari.B[i])):
-			tempB[i]=tempB[i]+Spilari.B[i][j]+" "
+			tempB[i]=str(tempB[i])+str(Spilari.B[i][j])+" "
 	for i in range(7):
-		print tempUB[i]+tempB[i]
+		print str(tempUB[i])+" "+str(tempB[i])
 	print ""
-	print G[0][len(G[0])-1]
-	print G[1][len(G[1])-1]
-	print G[2][len(G[2])-1]
-	print G[3][len(G[3])-1]
+	if len(Spilari.G[0])==0:
+		print "[]"
+	else:
+		print Spilari.G[0][len(Spilari.G[0])-1]
+	if len(Spilari.G[1])==0:
+		print "[]"
+	else:
+		print Spilari.G[1][len(Spilari.G[1])-1]
+	if len(Spilari.G[2])==0:
+		print "[]"
+	else:
+		print Spilari.G[2][len(Spilari.G[2])-1]
+	if len(Spilari.G[3])==0:
+		print "[]"
+	else:
+		print Spilari.G[3][len(Spilari.G[3])-1]
 
 #Fall sem segir forritinu að hætta leiknum
 #N: Stoppa(Spilari)

@@ -13,26 +13,26 @@ class Spilari:
 	#F: Ekkert
 	#E: x er nýr leikmaður sem heldur á spilastokki og 19 bunkum í formi lista
 	def __init__(self):
-		S=Spilastokkur()
-		E=[]
+		self.S=Spilastokkur()
+		self.E=[]
 		
 		#Bunki 1-7
-		B=[[],[],[],[],[],[],[]]
+		self.B=[[],[],[],[],[],[],[]]
 		
 		#UndirBunki 1-7
-		UB=[[],[],[],[],[],[],[]]
+		self.UB=[[],[],[],[],[],[],[]]
 				
 		#Grunnur 1-4
-		G=[[],[],[],[]]
+		self.G=[[],[],[],[]]
 		
 		#legg spil í bunkana
 		for i in range(7):
-			for j in range(i):
-				UB[i].append(S.Taka())
+			for j in range(i+1):
+				self.UB[i].append(self.S.Taka())
 				
 		#"sný upp" efstu spilunum í UB og set þau í samsvarandi lista í B
 		for i in range(7):
-			B[i].append(UB[i].pop())
+			self.B[i].append(self.UB[i].pop())
 		
 	#Dreg spil úr spilastokknum og set það efst í endurvinnslubunkann
 	#Ef stokkurinn er tómur, þá er endurvinnslubunkinn endurunninn

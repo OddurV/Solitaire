@@ -55,7 +55,35 @@ class Prufur(unittest.TestCase):
 		pass
 	
 	def test_Spilari_eiginleikar(self):
-		pass
+		Leikmadur=Spilari()
+		print ""
+		print "S[0]"
+		print Leikmadur.S[0]
+		print "len(E)"
+		print len(Leikmadur.E)
+		print "len(UB[0])"
+		print len(Leikmadur.UB[0])
+		print "UB"
+		print Leikmadur.UB[1][0]
+		print Leikmadur.UB[1][len(Leikmadur.UB[1])-1]
+		print Leikmadur.UB[2][0]
+		print Leikmadur.UB[3][0]
+		print Leikmadur.UB[4][0]
+		print Leikmadur.UB[5][0]
+		print Leikmadur.UB[6][0]
+		print "pop"
+		#x=Leikmadur.UB[0].pop()
+		#print x
+		print "B"
+		print Leikmadur.B[0][0]
+		print Leikmadur.B[1][0]
+		print Leikmadur.B[2][0]
+		print Leikmadur.B[3][0]
+		print Leikmadur.B[4][0]
+		print Leikmadur.B[5][0]
+		print Leikmadur.B[6][0]
+		print "len(UB)"
+		print len(Leikmadur.UB)
 	
 	def test_Spilari_Draga(self):
 		pass
