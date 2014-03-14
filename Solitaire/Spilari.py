@@ -66,7 +66,7 @@ class Spilari:
 	#E: spilarunan sem er á bilinu num1 til num2 hefur verið
 	#   færð úr bunka 1 yfir í bunka 2.
 	def Hreyfa(self,Bunki1,Bunki2,num1,num2):
-		if Reglur.legalMove(Bunki1,Bunki2,num1,num2):
+		if Reglur.LeyfilegHreyfing(Bunki1,Bunki2,num1,num2):
 			temp=[]
 			for i in range(num2-num1):
 				temp.append(Bunki1.pop())
