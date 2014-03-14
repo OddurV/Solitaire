@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-import Spilastokkur
-import Spilari
-import Reglur
-import Prompt
+from Spilastokkur import *
+from Spilari import *
+from Reglur import *
+from Prompt import *
 
 
 

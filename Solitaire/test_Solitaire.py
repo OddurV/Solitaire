@@ -2,9 +2,9 @@
 import unittest
 import Spilastokkur as Stokkur
 import Solitaire as Kapall
-import Reglur
-import Prompt
-import Spilari
+from Reglur import *
+from Prompt import *
+from Spilari import Spilari
 
 class Prufur(unittest.TestCase):
 	def test_Spil_Eiginleikar(self):
@@ -74,6 +74,10 @@ class Prufur(unittest.TestCase):
 	
 	def test_Reglur_Tapa(self):
 		pass
+	
+	def test_Prompt_Stada(self):
+		spilari=Spilari()
+		Stada(spilari)
 	
 	"""
 	#Gömul próf (úr pöndukaplinum)

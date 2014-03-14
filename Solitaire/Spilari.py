@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import Spilastokkur
-import Reglur
+from Spilastokkur import *
+from Reglur import *
 
 #Leikmaðurinn heldur á öllum bunkunum 
 #og getur hreyft spil á milli þeirra

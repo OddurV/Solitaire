@@ -4,10 +4,27 @@
 
 #Fall sem prentar stöðuna í leiknum
 #N: Stada(Spilari)
-#F: ?
-#E: ?
+#F: Ekkert
+#E: Staða spilsins 
 def Stada(Spilari):
-    pass
+	print "Fjöldi spila í spilastokknum: ", len(Spilari.S)
+	print "E: ",Spilari.E[len(Spilari.E)]
+	print ""
+	tempUB=[[],[],[],[],[],[],[]]
+	for i in range(7):
+		for j in range(len(Spilari.UB[i])):
+			tempUB[i]=tempUB[i]+"[*] "
+	tempB=[[],[],[],[],[],[],[]]
+	for i in range(7):
+		for j in range(len(Spilari.B[i])):
+			tempB[i]=tempB[i]+Spilari.B[i][j]+" "
+	for i in range(7):
+		print tempUB[i]+tempB[i]
+	print ""
+	print G[0][len(G[0])-1]
+	print G[1][len(G[1])-1]
+	print G[2][len(G[2])-1]
+	print G[3][len(G[3])-1]
 
 #Fall sem segir forritinu að hætta leiknum
 #N: Stoppa(Spilari)
