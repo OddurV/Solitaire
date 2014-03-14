@@ -5,13 +5,13 @@ import Spilastokkur
 
 #Fall sem athugar hvort að leikurinn er löglegur
 #Skilar True eða False
-#N: legalMove(Bunki1,Bunki2,num1,num2)
+#N: LeyfilegHreyfing(Bunki1,Bunki2,num1,num2)
 #F: Bunki1 og Bunki2 eru listar, num1 og num2 eru heiltölur
 #   0<=num1<=num2<len(Bunki1)
 #E: Skilar True ef það er leyfilegt að færa spilarununa sem
 #   er á bilinu num1 til num2, úr bunka 1 og í bunka 2.
 #   Annars er False skilað
-def legalMove(Bunki1,Bunki2,num1,num2):
+def LeyfilegHreyfing(Bunki1,Bunki2,num1,num2):
 	x=Bunki1[num1]
 	y=Bunki2[len(Bunki2)-1]
 	check1=(x.gildi==y.gildi+1)
@@ -21,6 +21,14 @@ def legalMove(Bunki1,Bunki2,num1,num2):
 		check2=(y.sort=="H" or y.sort=="T")
 	return check1 and check2
 
+#Fall sem athugar hvort að það má færa spilið upp í lokabunka (G)
+#N: LeyfilegLokahreyfing(Bunki1,G,num1)
+#F: Bunki1 og G eru listar
+#E: Skilar True ef það er leyfilegt að færa aftasta spilið í bunka1
+#   yfir í G
+def LeyfilegLokahreyfing(Bunki1,G):
+	pass
+	
 #Fall sem athugar hvort að leikmaðurinn hefur sigrað
 #N: Sigra(G)
 #F: G er listi af listunum sem öll spilin eiga að enda í
