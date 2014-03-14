@@ -1,51 +1,51 @@
 # -*- coding: utf-8 -*-
 import unittest
-import Spilastokkur as Stokkur
-import Solitaire as Kapall
+from Spilastokkur import *
+from Solitaire import *
 from Reglur import *
 from Prompt import *
-from Spilari import Spilari
+from Spilari import *
 
 class Prufur(unittest.TestCase):
 	def test_Spil_Eiginleikar(self):
-		spil=Stokkur.Spil("H",1,"")
+		spil=Spil("H",1,"")
 		self.assertEqual(spil.sort,"H")
 		self.assertEqual(spil.gildi,1)
 	
 	def test_Spilastokkur_Lengd(self):
-		S=Stokkur.Spilastokkur()
+		S=Spilastokkur()
 		self.assertEqual(len(S),52)
-		spil=Stokkur.Spil("H",1,"")
+		spil=Spil("H",1,"")
 	
 	def test_Spilastokkur_Stokka1(self):
 		#Athuga hvort að öll spilin séu enn í spilastokknum eftir stokkun
-		S=Stokkur.Spilastokkur()
+		S=Spilastokkur()
 		A=[]
 		for i in ["H","S","T","L"]:
 			for j in range(1,14):
-				A.append(Stokkur.Spil(i,j,""))
+				A.append(Spil(i,j,""))
 		
 		for i in range(len(S)):
 			flag=False
 			for j in range(len(A)):
-				flag=flag or S[i]==A[j]#(S[i].sort==A[j].sort and S[i].gildi==A[j].gildi)
+				flag=flag or S[i]==A[j]
 			self.assertTrue(flag)
 		
 	
 	def test_Spilastokkur_Stokka2(self):
 		#Athuga hvort að spilastokkurinn hafi verið stokkaður
-		S=Stokkur.Spilastokkur()
+		S=Spilastokkur()
 		A=[]
 		for i in ["H","S","T","L"]:
 			for j in range(1,14):
-				A.append(Stokkur.Spil(i,j,""))
+				A.append(Spil(i,j,""))
 		for i in range(len(S)):
 			flag=True
 			flag=flag and (S[i].sort==A[i].sort and S[i].gildi==A[i].gildi)
 		self.assertFalse(flag)
 	
 	def test_Spilastokkur_Taka(self):
-		S=Stokkur.Spilastokkur()
+		S=Spilastokkur()
 		x=[S[0].sort,S[0].gildi]
 		y=S.Taka()
 		self.assertEqual(x[0],y.sort)
@@ -66,7 +66,7 @@ class Prufur(unittest.TestCase):
 	def test_Spilari_Hreyfa(self):
 		pass
 	
-	def test_Reglur_legalMove(self):
+	def test_Reglur_LeyfilegHreyfing(self):
 		pass
 		
 	def test_Reglur_Sigra(self):
@@ -76,8 +76,8 @@ class Prufur(unittest.TestCase):
 		pass
 	
 	def test_Prompt_Stada(self):
-		spilari=Spilari()
-		Stada(spilari)
+		spila=Spilari()
+		Stada(spila)
 	
 	"""
 	#Gömul próf (úr pöndukaplinum)
