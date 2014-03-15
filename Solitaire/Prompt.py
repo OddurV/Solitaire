@@ -14,7 +14,7 @@ def Stada(Spilari):
 	if len(Spilari.E)==0:
 		print "[]"
 	else:
-		print "E: ",Spilari.E[len(Spilari.E)]
+		print "E: ",Spilari.E[len(Spilari.E)-1]
 	
 	print ""
 	
@@ -68,7 +68,14 @@ def Stoppa(Spilari):
 #F: ?
 #E: ?
 def Terminalspilun(Spilari):
-    pass
+	pass
+
+#Fall sem prentar leikreglurnar á skjáinn
+#N: Leikreglur()
+#F: Ekkert
+#E: Búið er að prenta leikreglurnar á skjáinn
+def Leikreglur():
+	pass
 
 #Fall sem prentar út "Ólöglegur leikur"
 #N: Villa()
@@ -76,3 +83,28 @@ def Terminalspilun(Spilari):
 #E: Strengurinn "Ólöglegur leikur" hefur verið skrifaður á staðalúttak
 def Villa():
 	print "Ólöglegur leikur"
+
+#Fall sem skrifar mynd og leikreglurnar á skjáinn þegar leikurinn hefst
+def Byrjun():
+	print "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+	print " ______   ______   __      ______  ______   ______   ______  _____     ______ "
+	print "/   ___| /  __  \ |  |    |_    _||_    _| /  __  \ |_    _|/  __ \   |   ___|"
+	print "|  |    /  /  \  \|  |      |  |    |  |  /  /  \  \  |  |  | |  \ \  |  |    "
+	print "|  \__  |  |  |  ||  |      |  |    |  |  |  |  |  |  |  |  | |   | | |  |    "
+	print "\___  \ |  |  |  ||  |      |  |    |  |  |  |__|  |  |  |  | |__/ /  |  |___ "
+	print "    |  ||  |  |  ||  |      |  |    |  |  |   __   |  |  |  |  __ \   |   ___|"
+	print "__  |  ||  |  |  ||  |      |  |    |  |  |  |  |  |  |  |  | |  \ \  |  |    "
+	print "| |_/  |\  \__/  /|  |___  _|  |_   |  |  |  |  |  | _|  |_ | |   \ \ |  |___ "
+	print "\_____/  \______/ |______||______|  |__|  |__|  |__||______||_|    \_||______|"
+	print "                                                                              "
+	print "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+	print ""
+	Leikreglur()
+
+#Fall sem skrifar mynd á skjáinn þegar leikmaðurinn sigrar
+def Vinna():
+	pass
+
+#Fall sem skrifar mynd á skjáinn þegar leikmaðurinn tapar
+def Tapa():
+	pass

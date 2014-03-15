@@ -42,22 +42,22 @@ class Spilari:
 	#   endurvinnslubunkann, ef það voru engin spil í stokknum þá hefur
 	#   endurvinnslubunkinn verið endurunninn, en ef hann var líka tómur
 	#   þá hefur ekkert gerst.
-	def Draga(self,S,E):
-		if len(S)==0:
-			if len(E)==0:
+	def Draga(self):
+		if len(self.S)==0:
+			if len(self.E)==0:
 				return
 			else:
-				Endurvinna(S,E)
+				self.Endurvinna()
 		else:
-			E.append(S.Taka())
+			self.E.append(self.S.Taka())
 
 	#Fall sem setur endurvinnslubunkann aftur í spilastokkinn
 	#N: Spilari.Endurvinna(S,E)
 	#F: S er tómur, og það er a.m.k. eitt spil í E
 	#E: Öll spilin í E hafa verið færð aftur í S
-	def Endurvinna(self,S,E):
-		for i in range(0,len(E),1):
-			S.Leggja(E.pop())
+	def Endurvinna(self):
+		for i in range(0,len(self.E),1):
+			self.S.Leggja(self.E.pop())
 		
 	#Fall sem hreyfir spil úr einum bunka í annan
 	#N: Spilari.Hreyfa(Bunki1,Bunki2,num1,num2)

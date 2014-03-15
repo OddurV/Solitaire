@@ -46,13 +46,17 @@ class Prufur(unittest.TestCase):
 	
 	def test_Spilastokkur_Taka(self):
 		S=Spilastokkur()
-		x=[S[0].sort,S[0].gildi]
+		x=[S[len(S)-1].sort,S[len(S)-1].gildi]
 		y=S.Taka()
 		self.assertEqual(x[0],y.sort)
 		self.assertEqual(x[1],y.gildi)
 	
 	def test_Spilastokkur_Leggja(self):
-		pass
+		S=Spilastokkur()
+		x=Spil("H",1,"")
+		S.Leggja(x)
+		self.assertEqual(S[len(S)-1].sort,"H")
+		self.assertEqual(S[len(S)-1].gildi,1)
 	
 	def test_Spilari_eiginleikar(self):
 		Leikmadur=Spilari()
@@ -86,10 +90,24 @@ class Prufur(unittest.TestCase):
 		print len(Leikmadur.UB)
 	
 	def test_Spilari_Draga(self):
-		pass
+		Leikmadur=Spilari()
+		x=Leikmadur.S[len(Leikmadur.S)-1]
+		Leikmadur.Draga()
+		self.assertEqual(x.sort,Leikmadur.E[0].sort)
+		self.assertEqual(x.gildi,Leikmadur.E[0].gildi)
 	
 	def test_Spilari_Endurvinna(self):
-		pass
+		print ""
+		Leikmadur=Spilari()
+		Stada(Leikmadur)
+		for i in range(24):
+			Leikmadur.Draga()
+		Stada(Leikmadur)
+		Leikmadur.Endurvinna()
+		Stada(Leikmadur)
+		for i in range(24):
+			Leikmadur.Draga()
+		Stada(Leikmadur)
 	
 	def test_Spilari_Hreyfa(self):
 		pass
@@ -104,8 +122,14 @@ class Prufur(unittest.TestCase):
 		pass
 	
 	def test_Prompt_Stada(self):
-		spila=Spilari()
-		Stada(spila)
+		print ""
+		Leikmadur=Spilari()
+		Stada(Leikmadur)
+	
+	def test_Prompt_Byrjun(self):
+		print ""
+		Byrjun()
+	
 	
 	"""
 	#Gömul próf (úr pöndukaplinum)

@@ -70,19 +70,19 @@ class Spilastokkur:
 	#F: num1 og num2 eru heiltölur, 0<=num1<=num2<len(Spilastokkur)
 	#E: það er búið að víxla spilum númer num1 og num2
 	def Vixla(self,numer1,numer2):
-		breyta=[self.listi[numer1].sort,self.listi[numer1].gildi]
-		self.listi[numer1].sort=self.listi[numer2].sort
-		self.listi[numer1].gildi=self.listi[numer2].gildi
-		self.listi[numer2].sort=breyta[0]
-		self.listi[numer2].gildi=breyta[1]
+		breyta=[self[numer1].sort,self[numer1].gildi]
+		self[numer1].sort=self[numer2].sort
+		self[numer1].gildi=self[numer2].gildi
+		self[numer2].sort=breyta[0]
+		self[numer2].gildi=breyta[1]
 	
 	#Tek spil úr stokknum
 	#N: Spilastokkur.Taka()
 	#F: Ekkert
 	#E: Fyrsta spilinu í stokknum hefur verið skilað, og eytt úr stokknum
 	def Taka(self):
-		x=self.listi[0]
-		del self.listi[0]
+		x=self[len(self)-1]
+		del self.listi[len(self)-1]
 		return x
 		
 	#Legg spil í bunkann
