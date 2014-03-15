@@ -53,6 +53,8 @@ def Stada(Spilari):
 		print "[]"
 	else:
 		print Spilari.G[3][len(Spilari.G[3])-1]
+		
+	print ""
 
 #Fall sem segir forritinu að hætta leiknum
 #N: Stoppa(Spilari)
