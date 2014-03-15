@@ -18,19 +18,21 @@ def Stada(Spilari):
 	
 	print ""
 	
-	#Strengjaframsetning á undirbunkunum
-	tempUB=[[],[],[],[],[],[],[]]
+	#Set undirbunkana í temp
+	temp=[[],[],[],[],[],[],[]]
 	for i in range(7):
 		for j in range(len(Spilari.UB[i])):
-			tempUB[i]=str(tempUB[i])+"[*] "
-	#Strengjaframsetning á bunkunum
-	tempB=[[],[],[],[],[],[],[]]
+			temp[i].append("[*]")
+	#Bæti bunkunum við í temp
 	for i in range(7):
 		for j in range(len(Spilari.B[i])):
-			tempB[i]=str(tempB[i])+str(Spilari.B[i][j])+" "
+			temp[i].append(Spilari.B[i][j])
 	#Sýni undirbunkana og bunkana saman
 	for i in range(7):
-		print str(tempUB[i])+" "+str(tempB[i])
+		temp2=""
+		for j in range(len(temp[i])):
+			temp2=temp2+str(temp[i][j])+" "
+		print temp2
 	
 	print ""
 	
