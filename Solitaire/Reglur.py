@@ -12,11 +12,14 @@
 #E: Skilar True ef það er leyfilegt að leggja Spil ofan á Bunki1
 #   Annars er False skilað
 def LeyfilegHreyfing(Bunki1,UndirBunki1, Spil):
+    #Athuga hvort efsta spil Bunka sé face-up eða hvort setja megi kóng
     if len(Bunki1) == 0:
         if len(UndirBunki1) == 0:
             return Spil.gildi==13
         else:
             return False
+    
+    #Önnur tilfelli:
     efstaSpilBunka = Bunki1[-1]
     rjettGildiZ = (efstaSpilBunka.gildi==Spil.gildi+1)
     if efstaSpilBunka.sort=="H" or efstaSpilBunka.sort=="T":
@@ -26,12 +29,16 @@ def LeyfilegHreyfing(Bunki1,UndirBunki1, Spil):
     return rjettGildiZ and rjettSortZ
 
 
-#Fall sem athugar hvort að það má færa spilið upp í lokabunka (G)
-#N: LeyfilegLokahreyfing(Bunki1,G,num1)
-#F: Spil er Spil og G er Grunnur/Stafli í Spilara
-#E: Skilar True ef það er leyfilegt að færa aftasta spilið í bunka1
-#   yfir í G
+#Fall sem athugar hvort að það má færa spilið upp í lokabunka/stafla 
+#N: LeyfilegLokahreyfing(Spil, Stafli)
+#F: Spil er Spil og Stafli er Grunnur/Stafli í Spilara
+#E: Skilar True ef það er leyfilegt að setja spil ofaná stafla
 def LeyfilegLokahreyfing(Spil, Stafli):
+    if (len(Stafli) == 0):
+        if Spil.gildi==1:
+            return True
+        else:
+            return False
     efstaSpilStafla  = Stafli[-1]
     rjettGildiZ = (Spil.gildi == efstaSpilStafla.gildi+1)
     rjettSortZ = (Spil.sort == efstaSpilStafla)
