@@ -23,7 +23,7 @@ class Spilari:
         #UndirBunki 1-7
         self.UB=[[],[],[],[],[],[],[]]
                 
-        #Grunnur/stokkar 1-4
+        #Grunnur/staflar 1-4
         self.G=[[],[],[],[]] 
         
         #legg spil í bunkana
