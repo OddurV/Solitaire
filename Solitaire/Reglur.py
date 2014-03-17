@@ -67,24 +67,21 @@ def Moguleikur(Spilari):
         #Tékka á stöflum
         for stokkur in Spilari.G:
             tapZ = tapZ or ((Spil.sort == stokkur[-1].sort) and (Spil.gildi == stokkur[-1].gildi + 1 )) 
-        #Ef spila má spili er óþarfi að tékka á hinum
-        if tapZ :
-            return tapZ    
     
     #Tékka á hverju einasta spili í stokkinum
     for spil in Spilari.S:
-        tapZ = tapZ or tekkaBordh(spil)
+        tekkaBordh(spil)
         if tapZ:
             return tapZ
     
     #Tékka á efsta spili allra bunka
     for bunki in Spilari.B:
         if len(bunki)!=0 :
-            tapZ = tapZ or tekkaBordh(bunki[-1])
+            tekkaBordh(bunki[-1])
             
     #Tékka á efsta spili allra stafla
     for stafli in Spilari.G:
         if len(stafli)!=0 :
-            tapZ = tapZ or tekkaBordh(stafli[-1])    
+            tekkaBordh(stafli[-1])    
         
     return tapZ
