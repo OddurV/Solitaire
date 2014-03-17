@@ -15,7 +15,7 @@ class Spilari:
 	#E: x er nýr leikmaður sem heldur á spilastokki og 19 bunkum í formi lista
 	def __init__(self):
 		self.S=Spilastokkur()
-		self.E=[]
+		self.E=[] #Endurvinnslubunki
 		
 		#Bunki 1-7
 		self.B=[[],[],[],[],[],[],[]]
@@ -23,8 +23,8 @@ class Spilari:
 		#UndirBunki 1-7
 		self.UB=[[],[],[],[],[],[],[]]
 				
-		#Grunnur 1-4
-		self.G=[[],[],[],[]]
+		#Grunnur/stokkar 1-4
+		self.G=[[],[],[],[]] 
 		
 		#legg spil í bunkana
 		for i in range(7):
