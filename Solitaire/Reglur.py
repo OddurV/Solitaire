@@ -27,7 +27,11 @@ def LeyfilegHreyfing(Bunki1,Bunki2,num1,num2):
 #E: Skilar True ef það er leyfilegt að færa aftasta spilið í bunka1
 #   yfir í G
 def LeyfilegLokahreyfing(Bunki1,G):
-	pass
+    spil_a_bunka  = Bunki1[len(Bunki1)-1]
+    spil_a_stokki = G[len(G)-1]
+    rjettGildiZ = (spil_a_bunka.gildi==spil_a_stokki.gildi+1)
+    rjettSortZ = (spil_a_bunka.sort==spil_a_stokki)
+    return check1 and check2
 	
 #Fall sem athugar hvort að leikmaðurinn hefur sigrað
 #N: Sigra(G)
