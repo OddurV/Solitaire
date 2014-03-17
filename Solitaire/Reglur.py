@@ -56,7 +56,7 @@ def Tapa(Spilari):
 	tapZ = False
 	for spil in Spilari.S:
         for bunki in Spilari.B:
-            tapZ = PassaSaman(spil,bunki[-1])
+            tapZ = PassaSaman(spil,bunki[-1])            
 	      
 	      
 	      
