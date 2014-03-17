@@ -23,9 +23,9 @@ def PassaSaman(Spil1, Spil2):
 #   er á bilinu num1 til num2, úr bunka 1 og í bunka 2.
 #   Annars er False skilað
 def LeyfilegHreyfing(Bunki1,Bunki2,num):
-	x=Bunki1[num]
-	y=Bunki2[-1]
-	return PassaSaman(x,y)
+    x=Bunki1[num]
+    y=Bunki2[-1]
+    return PassaSaman(x,y)
 
 
 #Fall sem athugar hvort að það má færa spilið upp í lokabunka (G)
@@ -39,13 +39,13 @@ def LeyfilegLokahreyfing(Bunki1,G):
     rjettGildiZ = (spil_a_bunka.gildi==spil_a_stokki.gildi+1)
     rjettSortZ = (spil_a_bunka.sort==spil_a_stokki)
     return check1 and check2
-	
+    
 #Fall sem athugar hvort að leikmaðurinn hefur sigrað
 #N: Sigra(G)
 #F: G er listi af listunum sem öll spilin eiga að enda í
 #E: Skilar True ef það eru 13 spil í hverjum lista, annars False
 def Sigra(G):
-	return len(G[0])==len(G[1]) and len(G[1])==len(G[2]) and len(G[2])==len(G[3]) and len(G[0])==13
+    return len(G[0])==len(G[1]) and len(G[1])==len(G[2]) and len(G[2])==len(G[3]) and len(G[0])==13
 
 #Fall sem athugar hvort að leikmaðurinn hefur tapað
 #N: Tapa(Spilari)
@@ -53,12 +53,12 @@ def Sigra(G):
 #E: Skilar True ef það er enginn leikur mögulegur
 #   skilar annars False
 def Tapa(Spilari):
-	tapZ = False
-	for spil in Spilari.S:
+    tapZ = False
+    for spil in Spilari.S:
         for bunki in Spilari.B:
             tapZ = PassaSaman(spil,bunki[-1])            
-	      
-	      
-	      
-	      
-	      
+        
+        
+        
+        
+        
