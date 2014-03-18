@@ -76,3 +76,14 @@ class Spilari:
                 Bunki2.append(temp.pop())
         else:
             Villa()
+            
+    #Fall sem snýr við efsta spilinu í undirbunka,
+    #ef bunkinn ofaná er tómur
+    #N: Spilari.Fletta(UndirBunki,Bunki)
+    #F: UndirBunki og Bunki eru listar af spilum, Bunki er tómur
+    #E: Efsta spilið í UndirBunkanum hefur verið sett í Bunkann
+    def Fletta(self,UndirBunki,Bunki):
+        if LeyfaFletta(UndirBunki,Bunki):
+            Bunki.append(UndirBunki.pop())
+        else:
+            Villa()

@@ -44,6 +44,13 @@ def LeyfilegLokahreyfing(Spil, Stafli):
     rjettSortZ = (Spil.sort == efstaSpilStafla)
     return rjettGildiZ and rjettSortZ
     
+#Fall sem athugar hvort að það má snúa við efsta spilinu í undirbunkanum
+#N: LeyfaFletta(UndirBunki,Bunki)
+#F: UndirBunki og Bunki eru listar af spilum
+#E: Skilar True ef Bunki er tómur og Undirbunki er ekki tómur, annars False
+def LeyfaFletta(UndirBunki,Bunki):
+    return len(Bunki)==0 and len(UndirBunki)>0
+    
 #Fall sem athugar hvort að leikmaðurinn hefur sigrað
 #N: Sigra(G)
 #F: G er listi af listunum sem öll spilin eiga að enda í
