@@ -127,6 +127,12 @@ class Prufur(unittest.TestCase):
         Enda2=len(Leikmadur.B[1])
         self.assertEqual(Byrja1+1,Enda1)
         self.assertEqual(Byrja2,Enda2+1)
+        
+    def test_Spilari_Fletta(self):
+        pass
+    
+    def test_Reglur_LeyfaFletta(self):
+        pass
     
     def test_Reglur_LeyfilegHreyfing(self):
         pass
