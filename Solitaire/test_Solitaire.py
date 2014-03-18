@@ -1,5 +1,3 @@
-#ODDUR ER AÐ VINNA Í test_Spilari_Hreyfa(self):
-
 # -*- coding: utf-8 -*-
 import unittest
 from Spilastokkur import *
@@ -112,7 +110,23 @@ class Prufur(unittest.TestCase):
         Stada(Leikmadur)
     
     def test_Spilari_Hreyfa(self):
-        pass
+        Leikmadur=Spilari()
+        #Stada(Leikmadur)
+        Byrja1=len(Leikmadur.B[0])
+        Byrja2=len(Leikmadur.B[1])
+        x=Leikmadur.B[0][0]
+        if x.sort=="S" or x.sort=="L":
+            y=Spil("H",x.gildi-1,"")
+        else:
+            y=Spil("S",x.gildi-1,"")
+        Leikmadur.B[1][0]=y
+        #Stada(Leikmadur)
+        Leikmadur.Hreyfa(Leikmadur.B[1],Leikmadur.B[0],Leikmadur.UB[0],0)
+        #Stada(Leikmadur)
+        Enda1=len(Leikmadur.B[0])
+        Enda2=len(Leikmadur.B[1])
+        self.assertEqual(Byrja1+1,Enda1)
+        self.assertEqual(Byrja2,Enda2+1)
     
     def test_Reglur_LeyfilegHreyfing(self):
         pass

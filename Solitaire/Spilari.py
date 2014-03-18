@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#ODDUR ER AÐ VINNA Í Hreyfa FALLINU
 from Spilastokkur import *
 from Reglur import *
 from Prompt import *
@@ -62,17 +61,18 @@ class Spilari:
             self.S.Leggja(self.E.pop())
         
     #Fall sem hreyfir spil úr einum bunka í annan
-    #N: Spilari.Hreyfa(Bunki1,Bunki2,num1,num2)
-    #F: Bunki1 og Bunki2 eru listar, num1 og num2 eru heiltölur
-    #   0<=num1<=num2<len(Bunki1)
-    #E: spilarunan sem er á bilinu num1 til num2 hefur verið
+    #N: Spilari.Hreyfa(Bunki1,Bunki2,UndirBunki2,num)
+    #F: Bunki1, Bunki2 og UndirBunki2 eru listar, num er heiltala
+    #   0<=num<len(Bunki1)
+    #E: spilarunan sem er á bilinu num til len(Bunki1) hefur verið
     #   færð úr bunka 1 yfir í bunka 2.
-    def Hreyfa(self,Bunki1,Bunki2,num1,num2):
-        if LeyfilegHreyfing(Bunki1,Bunki2,num1,num2):
+    def Hreyfa(self,Bunki1,Bunki2,UndirBunki2,num):
+        if LeyfilegHreyfing(Bunki2,UndirBunki2,Bunki1[num]):
             temp=[]
-            for i in range(num2-num1):
+            x=len(Bunki1)
+            for i in range(x-num):
                 temp.append(Bunki1.pop())
-            for i in range(num2-num1):
+            for i in range(x-num):
                 Bunki2.append(temp.pop())
         else:
-            Prompt.Villa()
+            Villa()
