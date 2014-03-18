@@ -1,3 +1,5 @@
+#ODDUR ER AÐ VINNA Í test_Spilari_Hreyfa(self):
+
 # -*- coding: utf-8 -*-
 import unittest
 from Spilastokkur import *
