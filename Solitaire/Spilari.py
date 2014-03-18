@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#ODDUR ER AÐ VINNA Í Hreyfa FALLINU
 from Spilastokkur import *
 from Reglur import *
 from Prompt import *
