@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#ODDUR ER AÐ VINNA Í ÞESSARI SKRÁ!
 from Spilari import *
 
 #Tilkynningar til, og skipanir frá notanda
@@ -22,9 +21,9 @@ def Stada(Spilari):
 
     #Endurvinnslubunkinn
     if len(Spilari.E)==0:
-        print "[]"
+        print "(0)  E: []"
     else:
-        print "E: ",Spilari.E[len(Spilari.E)-1]
+        print "(0)  E: ",Spilari.E[len(Spilari.E)-1]
 
     print ""
     
@@ -39,7 +38,7 @@ def Stada(Spilari):
             temp[i].append(Spilari.B[i][j])
     #Sýni undirbunkana og bunkana saman
     for i in range(7):
-        temp2=""
+        temp2="("+str(i+1)+")  "
         for j in range(len(temp[i])):
             temp2=temp2+str(temp[i][j])+" "
         print temp2
@@ -48,21 +47,21 @@ def Stada(Spilari):
 
     #Sýni efstu spilin í grunninum
     if len(Spilari.G[0])==0:
-        print "[]"
+        print "(8)  []"
     else:
-        print Spilari.G[0][len(Spilari.G[0])-1]
+        print "(8)  ", Spilari.G[0][len(Spilari.G[0])-1]
     if len(Spilari.G[1])==0:
-        print "[]"
+        print "(9)  []"
     else:
-        print Spilari.G[1][len(Spilari.G[1])-1]
+        print "(9)  ", Spilari.G[1][len(Spilari.G[1])-1]
     if len(Spilari.G[2])==0:
-        print "[]"
+        print "(10) []"
     else:
-        print Spilari.G[2][len(Spilari.G[2])-1]
+        print "(10) ", Spilari.G[2][len(Spilari.G[2])-1]
     if len(Spilari.G[3])==0:
-        print "[]"
+        print "(11) []"
     else:
-        print Spilari.G[3][len(Spilari.G[3])-1]
+        print "(11) ", Spilari.G[3][len(Spilari.G[3])-1]
         
     print ""
 
@@ -88,17 +87,62 @@ def VilHreyfa(x):
 
 #Fall sem spyr notandann hvað hann vilji hreyfa, og kallar svo á Hreyfa(*)
 #N: HreyfaHvad(Spilari)
-#F: 
+#F: Spilari er af taginu Spilari
 #E: Kallað hefur verið á Hreyfa(*) með þeim viðföngum sem notandinn skilgreindi
 def HreyfaHvad(Spilari):
-    b1=raw_input("Bunki 1: ")
-    b2=raw_input("Bunki 2: ")
-    num1=raw_input("Spil 1: ")
-    if b2=="g0" or b2=="g1" or b2=="g2" or b2=="g3":
-        Spilari.Hreyfa(b1,b2,num1,num1)
+    b1=int(raw_input("Taka spil úr bunka númer: "))
+    num=int(raw_input("Byrja á spili númer: "))-1
+    b2=int(raw_input("Setja í bunka númer: "))
+    
+    #Ef b1==0 þá er verið að taka efsta spilið úr endurvinnslubunkanum
+    if b1==0:
+        #Ef b2==0 þá er verið að reyna að setja spil í endurvinnslubunkan
+        #Það er bannað.
+        if b2==0:
+            Villa()
+        #Hér er verið að færa spil í einn af venjulegu bunkunum 7
+        elif b2>0 and b2<8:
+            if Spilari.Hreyfa(Spilari.E,Spilari.B[b2-1],Spilari.UB[b2-1],num):
+                pass
+            else:
+                Villa()
+        #Hér er verið að færa spil í einn af stöflunum 4
+        else:
+            if Spilari.LokaHreyfing(Spilari.E,Spilari.G[b2-8]):
+                pass
+            else:
+                Villa()
+    #Ef 0<b1<8 þá er verið að færa spil úr einum af venjulegu bunkunum 7
+    if b1>0 and b1<8:
+        #Bannað að setja í endurvinnslubunkan
+        if b2==0:
+            Villa()
+        #Hér er verið að færa spil í einn af venjulegu bunkunum 7
+        elif b2>0 and b2<8:
+            if Spilari.Hreyfa(Spilari.B[b1-1],Spilari.B[b2-1],Spilari.UB[b2-1],num):
+                pass
+            else:
+                Villa()
+        #Hér er verið að færa spil í einn af stöflunum 4
+        else:
+            if Spilari.LokaHreyfing(Spilari.B[b1-1],Spilari.G[b2-8]):
+                pass
+            else:
+                Villa()
+    #Ef b1>7 þá er verið að færa spil úr einum af stöflunum 4
     else:
-        num2=raw_input("Spil 2: ")
-        Spilari.Hreyfa(b1,b2,num1,num2)
+        #Bannað að setja í endurvinnslubunkan
+        if b2==0:
+            Villa()
+        #Hér er verið að færa spil í einn af venjulegu bunkunum 7
+        elif b2>0 and b2<8:
+            if Spilari.Hreyfa(Spilari.G[b1-8],Spilari.B[b2-1],Spilari.UB[b2-1],num):
+                pass
+            else:
+                Villa()
+        #Það má ekki taka spil úr stafla og setja það í annan stafla
+        else:
+            Villa()
 
 #Fall sem segir forritinu að hætta leiknum
 #N: Stoppa(x)
