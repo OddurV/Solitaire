@@ -78,6 +78,21 @@ class Spilari:
             return True
         else:
             return False
+        
+     #Fall sem hreyfir spil úr einum bunka í stafla
+    #N: Spilari.Hreyfa(Bunki1,Stafli1
+    #F: Bunki1 og Stafli1 eru listar
+    #E: Ef löglegt er að hreyfa efsta spil bunkans
+    #   skilar fallið True og hefur verið færð úr bunka 1 yfir í bunka 2.
+    #   Ef ólöglegt er engin hreyfing framkvæmd og fallið skilar False
+    def LokaHreyfing(self, Bunki, Stafli):
+        if LeyfilegLokahreyfing(Bunki[-1],Stafli):
+            Stafli.append(Bunki[-1].pop())
+            return True
+        else
+            return False
+            
+    
             
     #Fall sem snýr við efsta spilinu í undirbunka,
     #ef bunkinn ofaná er tómur

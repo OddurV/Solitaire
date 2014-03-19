@@ -112,16 +112,39 @@ class Prufur(unittest.TestCase):
     def test_Spilari_Hreyfa(self):
         Leikmadur=Spilari()
         #Stada(Leikmadur)
-        Byrja1=len(Leikmadur.B[0])
-        Byrja2=len(Leikmadur.B[1])
-        x=Leikmadur.B[0][0]
-        if x.sort=="S" or x.sort=="L":
-            y=Spil("H",x.gildi-1,"")
-        else:
-            y=Spil("S",x.gildi-1,"")
-        Leikmadur.B[1][0]=y
-        #Stada(Leikmadur)
-        Leikmadur.Hreyfa(Leikmadur.B[1],Leikmadur.B[0],Leikmadur.UB[0],0)
+        Byrja1=len(Leikmadur.B[0]) # = 1
+        Byrja2=len(Leikmadur.B[1]) # = 2
+         
+        x = Leikmadur.B[0][0]
+        y = Leikmadur.B[1][0]
+        z = Leikmadur.B[2][0]
+        th = Leikmadur.B[3][0]
+        x.sort = "H"
+        x.gildi = 13  # x er Hjartakóngur á bunka 0 frá vinstri
+        y.sort = "L"
+        y.gildi = 12 # y er Laufadrottning á bunka 1
+        z.sort = "S"
+        z.gildi = 11 # z er Spaðagosi á bunka 2
+        th.sort = "L"
+        th.gildi = 10 # th er Laufatía á bunka 3
+        
+        #Drottning sett á gosa - false vegna hærra og litar
+        self.assertFalse(Leikmadur.Hreyfa(Leikmadur.B[1],Leikmadur.B[2],Leikmadur.UB[2],0))
+        #Kóngur settur á gosa - false vegna hærra og langt í burtu
+        self.assertFalse(Leikmadur.Hreyfa(Leikmadur.B[0],Leikmadur.B[2],Leikmadur.UB[2],0))
+        #tía sett á gosa - false vegna litar
+        self.assertFalse(Leikmadur.Hreyfa(Leikmadur.B[3],Leikmadur.B[2],Leikmadur.UB[2],0))
+        # tía sett á kóng - false venga of langt í burtu
+        self.assertFalse(Leikmadur.Hreyfa(Leikmadur.B[3],Leikmadur.B[1],Leikmadur.UB[1],0))
+        # Kóngur settur á tíu - false vegna hærra, of langt í burtu og litar
+        self.assertFalse(Leikmadur.Hreyfa(Leikmadur.B[0],Leikmadur.B[3],Leikmadur.UB[3],0))
+        #Drottning sett á kóng - true
+        self.assertTrue(Leikmadur.Hreyfa(Leikmadur.B[1],Leikmadur.B[0],Leikmadur.UB[0],0))
+        #Tía settur á drottningu - false vegna of langt í burtu  og litar
+        self.assertFalse(Leikmadur.Hreyfa(Leikmadur.B[3],Leikmadur.B[0],Leikmadur.UB[0],0))
+        #gosi settur á Tíu - false vegna hærra
+        self.assertFalse(Leikmadur.Hreyfa(Leikmadur.B[2],Leikmadur.B[3],Leikmadur.UB[3],0))
+        
         #Stada(Leikmadur)
         Enda1=len(Leikmadur.B[0])
         Enda2=len(Leikmadur.B[1])
