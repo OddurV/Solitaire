@@ -123,7 +123,7 @@ class Prufur(unittest.TestCase):
         y = Leikmadur.B[1][0]
         z = Leikmadur.B[2][0]
         th = Leikmadur.B[3][0]
-        x.sort = "H"
+        x.sort = "T"
         x.gildi = 13  # x er Hjartakóngur á bunka 0 frá vinstri
         y.sort = "L"
         y.gildi = 12 # y er Laufadrottning á bunka 1

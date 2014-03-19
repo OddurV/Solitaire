@@ -11,10 +11,10 @@ if __name__=="__main__":
     Spilari=Spilari()
     Byrjun()
     
-    
     #Leikjalykkja
     while True:
         Stada(Spilari)
+        Leikreglur()
         x=Adgerd()
         if Stoppa(x):
             Bless()
@@ -36,3 +36,4 @@ if __name__=="__main__":
             Leikreglur()
         else:
             Leikreglur()
+        
