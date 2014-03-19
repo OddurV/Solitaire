@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#ODDUR ER AÐ VINNA Í ÞESSARI SKRÁ!
 from Spilari import *
 
 #Tilkynningar til, og skipanir frá notanda
