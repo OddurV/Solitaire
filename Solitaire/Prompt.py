@@ -93,6 +93,7 @@ def HreyfaHvad(Spilari):
     b1=int(raw_input("Taka spil úr bunka númer: "))
     num=int(raw_input("Byrja á spili númer: "))-1
     b2=int(raw_input("Setja í bunka númer: "))
+    print ""
     
     #Ef b1==0 þá er verið að taka efsta spilið úr endurvinnslubunkanum
     if b1==0:
@@ -176,7 +177,7 @@ def Hjalp(x):
 #F: Ekkert
 #E: Búið er að prenta leikreglurnar á skjáinn
 def Leikreglur():
-    print "Leyfilegar skipanir: Hreyfa(H), Reglur(R), Hætta(Q)"
+    print "Leyfilegar skipanir: Draga(D), Hreyfa(H), Reglur(R), Hætta(Q)"
     print ""
 
 #Fall sem prentar út "Ólöglegur leikur"
