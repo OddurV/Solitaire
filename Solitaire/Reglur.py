@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
+
 #ÖSSUR ER AÐ VINNA Í ÞESSU
 
-# -*- coding: utf-8 -*-
+
 #import Spilastokkur
 
 
@@ -77,28 +79,29 @@ def Moguleikur(Spilari):
                     return False
     
     #Fall sem tekur inn spil og tjekkar fyrir alla bunka og stafla
-    def tekkaBordh(Spil):
+    def tekkaBordh(Spil, tapZ):
         #Tékka á bunkum
-        for i in range(0,8):
-            tapZ = tapZ or LeyfilegHreyfing(Spilari.B[i], Spilari.UB[i], Spil)    
+        for i in range(0,7):
+                tapZ = tapZ or LeyfilegHreyfing(Spilari.B[i], Spilari.UB[i], Spil)    
         #Tékka á stöflum
-        for stokkur in Spilari.G:
-            tapZ = tapZ or ((Spil.sort == stokkur[-1].sort) and (Spil.gildi == stokkur[-1].gildi + 1 )) 
+        for Stafli in Spilari.G:
+            tapZ = tapZ or LeyfilegLokahreyfing(Spil,Stafli)
+        return tapZ
     
     #Tékka á hverju einasta spili í stokkinum
     for spil in Spilari.S:
-        tekkaBordh(spil)
+        tapZ = tekkaBordh(spil, tapZ)
         if tapZ:
             return tapZ
     
     #Tékka á efsta spili allra bunka
     for bunki in Spilari.B:
         if len(bunki)!=0 :
-            tekkaBordh(bunki[-1])
+            tapZ = tekkaBordh(bunki[-1],tapZ)
             
     #Tékka á efsta spili allra stafla
     for stafli in Spilari.G:
         if len(stafli)!=0 :
-            tekkaBordh(stafli[-1])    
+            tapZ = tekkaBordh(stafli[-1],tapZ)    
         
     return tapZ

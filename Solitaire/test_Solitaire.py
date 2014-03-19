@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
+
+
 # ÖSSUR ER AÐ VINNA Í ÞESSU
 
-# -*- coding: utf-8 -*-
 import unittest
 from Spilastokkur import *
 from Solitaire import *
@@ -190,7 +192,32 @@ class Prufur(unittest.TestCase):
         self.assertTrue(Sigra(Leikmadur.G))
     
     def test_Reglur_Moguleikur(self):
-        pass
+        #Bý til Spilara sem getur ekkert gert
+        Leikmadur = Spilari()
+        Leikmadur.B[0][0] = Spil("H",2,"")
+        Leikmadur.B[1][0] = Spil("S",2,"")
+        Leikmadur.B[2][0] = Spil("T",2,"")
+        Leikmadur.B[3][0] = Spil("L",2,"")
+        Leikmadur.B[4][0] = Spil("H",4,"")
+        Leikmadur.B[5][0] = Spil("S",4,"")
+        Leikmadur.B[6][0] = Spil("L",4,"")
+        #tek alla ása og þrista úr stokkinum 
+        #(þeir gætu verið í undurbunkum - samtals 21 spil í þeim)
+        toPop = []
+        for i, spil in enumerate(Leikmadur.S.listi):
+            #bý til lista af spilum til að taka út - í stækkandi röð
+            if spil.gildi == 3 or spil.gildi == 1:
+                toPop.append(i)
+        toPop.reverse()
+        for i in toPop:
+            Leikmadur.S.listi.pop(i)
+        self.assertFalse(Moguleikur(Leikmadur))
+        
+        #Breyti einum tvistinum í ás
+        Leikmadur.B[0][0] = Spil("H",3,"")
+        self.assertTrue(Moguleikur(Leikmadur))
+            
+        
     
     def test_Prompt_Stada(self):
         print ""
