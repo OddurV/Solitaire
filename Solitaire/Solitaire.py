@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#ODDUR ER AÐ VINNA Í ÞESSARI SKRÁ!
 from Spilastokkur import *
 from Spilari import *
 from Reglur import *
@@ -20,10 +19,20 @@ if __name__=="__main__":
         if Stoppa(x):
             Bless()
             break
-        if VilDraga(x):
+        elif VilDraga(x):
             Spilari.Draga()
-        if VilHreyfa(x):
+        elif VilHreyfa(x):
             HreyfaHvad(Spilari)
-        if Hjalp(x):
+        elif VilFletta(x):
+            FlettaHvad(Spilari)
+        elif VilByrja(x):
+            print ""
+            print "Þessi skipun virkar ekki núna."
+            print "Vinsamlegast endurræstu leikin til að byrja aftur."
+            break
+        #    Spilari=Spilari()
+        #    Byrjun()
+        elif Hjalp(x):
             Leikreglur()
-        
+        else:
+            Leikreglur()

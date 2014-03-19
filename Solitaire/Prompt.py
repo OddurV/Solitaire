@@ -9,7 +9,7 @@ from Spilari import *
 #E: Staðalinntaki hefur verið skilað á lágstafaformi
 def Adgerd():
     x=raw_input("Hvað viltu gera? ")
-    return x.lower()
+    return x.lower().strip()
 
 #Fall sem prentar stöðuna í leiknum
 #N: Stada(Spilari)
@@ -85,6 +85,43 @@ def VilHreyfa(x):
     else:
         return False
 
+#Fall sem athugar hvort notandinn vill snúa við spili
+#N: VilFletta(x)
+#F: x er strengur
+#E: Fallið skilar True ef x táknar að leikmaðurinn vilji snúa við spili
+def VilFletta(x):
+    if x=="f" or x=="fletta" or x=="snúa":
+        return True
+    else:
+        return False
+
+#Fall sem athugar hvort notandinn vill byrja á nýjum leik
+#N: VilByrja(x)
+#F: x er strengur
+#E: Fallið skilar True ef x táknar að leikmaðurinn vilji byrja á nýjum leik
+def VilByrja(x):
+    if x=="b" or x=="byrja" or x=="new" or x=="newgame":
+        return True
+    else:
+        return False
+
+#Fall sem spyr notandann í hvaða bunka spilið sem hann vill snúa er, 
+#og kallar svo á Fletta(*)
+#N: FlettaHvad(Spilari)
+#F: Spilari er af taginu Spilari
+#E: Kallað hefur verið á Fletta með þeim viðföngum sem notandinn skilgreindi
+def FlettaHvad(Spilari):
+    num=int(raw_input("Í hvaða bunka er spilið sem á að fletta? "))-1
+    print ""
+    
+    if num<1 or num>7:
+        Villa()
+    else:
+        if Spilari.Fletta(Spilari.UB[num],Spilari.B[num]):
+            pass
+        else:
+            Villa()
+
 #Fall sem spyr notandann hvað hann vilji hreyfa, og kallar svo á Hreyfa(*)
 #N: HreyfaHvad(Spilari)
 #F: Spilari er af taginu Spilari
@@ -93,6 +130,7 @@ def HreyfaHvad(Spilari):
     b1=int(raw_input("Taka spil úr bunka númer: "))
     num=int(raw_input("Byrja á spili númer: "))-1
     b2=int(raw_input("Setja í bunka númer: "))
+    print ""
     
     #Ef b1==0 þá er verið að taka efsta spilið úr endurvinnslubunkanum
     if b1==0:
@@ -113,7 +151,7 @@ def HreyfaHvad(Spilari):
             else:
                 Villa()
     #Ef 0<b1<8 þá er verið að færa spil úr einum af venjulegu bunkunum 7
-    if b1>0 and b1<8:
+    elif b1>0 and b1<8:
         #Bannað að setja í endurvinnslubunkan
         if b2==0:
             Villa()
@@ -176,7 +214,7 @@ def Hjalp(x):
 #F: Ekkert
 #E: Búið er að prenta leikreglurnar á skjáinn
 def Leikreglur():
-    print "Leyfilegar skipanir: Hreyfa(H), Reglur(R), Hætta(Q)"
+    print "Leyfilegar skipanir: Draga(D), Hreyfa(H), Fletta(F), Reglur(R), Byrja aftur(B), Hætta(Q)"
     print ""
 
 #Fall sem prentar út "Ólöglegur leikur"
@@ -184,7 +222,8 @@ def Leikreglur():
 #F: Ekkert
 #E: Strengurinn "Ólöglegur leikur" hefur verið skrifaður á staðalúttak
 def Villa():
-    print "Ólöglegur leikur"
+    print "Ólöglegur leikur!"
+    print ""
 
 #Fall sem skrifar mynd og leikreglurnar á skjáinn þegar leikurinn hefst
 #N: Byrjun()

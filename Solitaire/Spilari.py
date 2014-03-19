@@ -87,9 +87,9 @@ class Spilari:
     #   Ef ólöglegt er engin hreyfing framkvæmd og fallið skilar False
     def LokaHreyfing(self, Bunki, Stafli):
         if LeyfilegLokahreyfing(Bunki[-1],Stafli):
-            Stafli.append(Bunki[-1].pop())
+            Stafli.append(Bunki.pop())
             return True
-        else
+        else:
             return False
             
     
