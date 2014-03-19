@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
-# ÖSSUR ER AÐ VINNA Í ÞESSU
-
 import unittest
 from Spilastokkur import *
 from Solitaire import *
