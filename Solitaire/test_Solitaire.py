@@ -60,6 +60,7 @@ class Prufur(unittest.TestCase):
     
     def test_Spilari_eiginleikar(self):
         Leikmadur=Spilari()
+        self.assertTrue(len(Leikmadur.E)==0)
         print ""
         print "S[0]"
         print Leikmadur.S[0]
@@ -88,6 +89,8 @@ class Prufur(unittest.TestCase):
         print Leikmadur.B[6][0]
         print "len(UB)"
         print len(Leikmadur.UB)
+        
+        
     
     def test_Spilari_Draga(self):
         Leikmadur=Spilari()
@@ -152,26 +155,37 @@ class Prufur(unittest.TestCase):
         self.assertEqual(Byrja2,Enda2+1)
         
     def test_Spilari_Fletta(self):
-        pass
+        Leikmadur=Spilari()
+        self.assertFalse(Leikmadur.Fletta(Leikmadur.UB[4],Leikmadur.B[4]))
+        Leikmadur.B[4].pop()
+        self.assertTrue(Leikmadur.Fletta(Leikmadur.UB[4],Leikmadur.B[4]))
     
     def test_Reglur_LeyfaFletta(self):
         Leikmadur = Spilari()
         Leikmadur.B[1].pop()
-        # Bunki tómur, Undirbunki ekki tómur
-        self.assertTrue(Leikmadur.UB[1], Leikmadur.B[1])
-        # Bunki ekki tómur, Undirbunki tómur
-        self.assertFalse(Leikmadur.UB[0],Leikmadur.B[0])
-        # Hvorki bunki né undirbunki tómir
-        self.assertFalse(Leikmadur.UB[2],Leikmadur.B[2])
-        Leikmadur.B[0].pop()
-        # Bæði bunki og undirbunki tómir
-        self.assertFalse(Leikmadur.UB[0], Leikmadur.B[0])
+        self.assertTrue(LeyfaFletta(Leikmadur.UB[1],Leikmadur.B[1]))
+        self.assertFalse(LeyfaFletta(Leikmadur.UB[3],Leikmadur.B[3]))
     
     def test_Reglur_LeyfilegHreyfing(self):
-        pass
-        
+        Leikmadur=Spilari()
+        Leikmadur.B[0].pop()
+        Leikmadur.B[1][0]=Spil("H",2,"")
+        Leikmadur.B[2][0]=Spil("L",3,"")
+        Leikmadur.B[3][0]=Spil("H",1,"")
+        Leikmadur.B[4][0]=Spil("S",13,"")
+        self.assertFalse(LeyfilegHreyfing(Leikmadur.B[1],Leikmadur.UB[1],Leikmadur.B[3][0]))
+        self.assertTrue(LeyfilegHreyfing(Leikmadur.B[2],Leikmadur.UB[2],Leikmadur.B[1][0]))
+        self.assertFalse(LeyfilegHreyfing(Leikmadur.B[2],Leikmadur.UB[2],Leikmadur.B[4][0]))
+        self.assertTrue(LeyfilegHreyfing(Leikmadur.B[0],Leikmadur.UB[0],Leikmadur.B[4][0]))
+
     def test_Reglur_Sigra(self):
-        pass
+        Leikmadur=Spilari()
+        self.assertFalse(Sigra(Leikmadur.G))
+        S=Spilastokkur()
+        for i in range(4):
+            for j in range(13):
+                Leikmadur.G[i].append(S.Taka())
+        self.assertTrue(Sigra(Leikmadur.G))
     
     def test_Reglur_Tapa(self):
         pass
@@ -184,87 +198,6 @@ class Prufur(unittest.TestCase):
     def test_Prompt_Byrjun(self):
         print ""
         Byrjun()
-    
-    
-    """
-    #Gömul próf (úr pöndukaplinum)
-    def test_Hendi_Halda(self):
-        S=Stokkur.Spilastokkur()
-        H=Stokkur.Hendi()
-        x=[S[0].sort,S[0].gildi]
-        H.Halda(S.Taka())
-        self.assertEqual(x[0],H[0].sort)
-        self.assertEqual(x[1],H[0].gildi)
-    
-    def test_Hendi_Henda(self):
-        S=Stokkur.Spilastokkur()
-        H=Stokkur.Hendi()
-        x=[S[0].sort,S[0].gildi]
-        H.Halda(S.Taka())
-        H.Halda(S.Taka())
-        fyrir=len(H)
-        H.Henda(len(H)-1)
-        eftir=len(H)
-        self.assertEqual(fyrir-eftir,1)
-    
-    def test_Kapall_Draga(self):
-        S=Stokkur.Spilastokkur()
-        H=Stokkur.Hendi()
-        S_fyrir=len(S)
-        H_fyrir=len(H)
-        Kapall.Draga(S,H)
-        S_eftir=len(S)
-        H_eftir=len(H)
-        self.assertEqual(S_fyrir-S_eftir,1)
-        self.assertEqual(H_fyrir-H_eftir,-1)
-        #Athuga hvort að spilið sem ég var að draga sé enn í stokknum
-        for i in range(len(S)):
-            flag=True
-            flag=flag and (S[i].sort==H[0].sort and S[i].gildi==H[0].gildi)
-        self.assertFalse(flag)
-    
-    def test_Kapall_Kasta(self):
-        listi=[]
-        for i in ["H","S","T","L"]:
-            for j in range(1,14):
-                listi.append(Stokkur.Spil(i,j,""))
         
-        #Prófa að kasta 2 spilum
-        H=Stokkur.Hendi()
-        for i in range(4):
-            H.Halda(listi[i])
-        H_fyrir=len(H)
-        Kapall.Kasta(listi,H,2)
-        H_eftir=len(H)
-        self.assertEqual(H_fyrir-H_eftir,2)
-        self.assertEqual(H[0].sort,"H")
-        self.assertEqual(H[0].gildi,1)
-        self.assertEqual(H[1].sort,"H")
-        self.assertEqual(H[1].gildi,4)
-        
-        #Prófa að kasta 4 spilum
-        H.Halda(listi[4])
-        H.Halda(listi[13])
-        H_fyrir=len(H)
-        Kapall.Kasta(listi,H,4)
-        H_eftir=len(H)
-        self.assertEqual(H_fyrir-H_eftir,4)
-        self.assertEqual(len(H),0)
-    
-    def test_Kapall_Skipta(self):
-        S=Stokkur.Spilastokkur()
-        H=Stokkur.Hendi()
-        for i in range(6):
-            H.Halda(S[i])
-        #"Tæmi" stokkinn, því skipta á bara að virka þegar stokkurinn er tómur
-        S=[]
-        x=[H[0].sort,H[0].gildi]
-        y=[H[2].sort,H[2].gildi]
-        Kapall.Skipta(S,H)
-        self.assertEqual(H[len(H)-1].sort,x[0])
-        self.assertEqual(H[len(H)-1].gildi,x[1])
-        self.assertEqual(H[1].sort,y[0])
-        self.assertEqual(H[1].gildi,y[1])
-    """
 if __name__ == '__main__':
     unittest.main(verbosity=2, exit=False)
