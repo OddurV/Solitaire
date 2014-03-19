@@ -132,7 +132,17 @@ class Prufur(unittest.TestCase):
         pass
     
     def test_Reglur_LeyfaFletta(self):
-        pass
+        Leikmadur = Spilari()
+        Leikmadur.B[1].pop()
+        # Bunki tómur, Undirbunki ekki tómur
+        self.assertTrue(Leikmadur.UB[1], Leikmadur.B[1])
+        # Bunki ekki tómur, Undirbunki tómur
+        self.assertFalse(Leikmadur.UB[0],Leikmadur.B[0])
+        # Hvorki bunki né undirbunki tómir
+        self.assertFalse(Leikmadur.UB[2],Leikmadur.B[2])
+        Leikmadur.B[0].pop()
+        # Bæði bunki og undirbunki tómir
+        self.assertFalse(Leikmadur.UB[0], Leikmadur.B[0])
     
     def test_Reglur_LeyfilegHreyfing(self):
         pass

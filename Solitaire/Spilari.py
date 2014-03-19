@@ -64,8 +64,9 @@ class Spilari:
     #N: Spilari.Hreyfa(Bunki1,Bunki2,UndirBunki2,num)
     #F: Bunki1, Bunki2 og UndirBunki2 eru listar, num er heiltala
     #   0<=num<len(Bunki1)
-    #E: spilarunan sem er á bilinu num til len(Bunki1) hefur verið
-    #   færð úr bunka 1 yfir í bunka 2.
+    #E: Ef löglegt er að hreyfa spilarununa sem er á bilinu num til len(Bunki1) 
+    #   skilar fallið True og hefur verið færð úr bunka 1 yfir í bunka 2.
+    #   Ef ólöglegt er engin hreyfing framkvæmd og fallið skilar False
     def Hreyfa(self,Bunki1,Bunki2,UndirBunki2,num):
         if LeyfilegHreyfing(Bunki2,UndirBunki2,Bunki1[num]):
             temp=[]
@@ -74,16 +75,20 @@ class Spilari:
                 temp.append(Bunki1.pop())
             for i in range(x-num):
                 Bunki2.append(temp.pop())
+            return True
         else:
-            Villa()
+            return False
             
     #Fall sem snýr við efsta spilinu í undirbunka,
     #ef bunkinn ofaná er tómur
     #N: Spilari.Fletta(UndirBunki,Bunki)
-    #F: UndirBunki og Bunki eru listar af spilum, Bunki er tómur
-    #E: Efsta spilið í UndirBunkanum hefur verið sett í Bunkann
+    #F: UndirBunki og Bunki eru listar af spilum
+    #E: Efsta spilið í UndirBunkanum hefur verið sett í Bunkann ef Bunki var tómur
+    #   og fallið skilar True. Ef Bunki var ekki tómur gerist ekkert og fallið skilar 
+    #   False
     def Fletta(self,UndirBunki,Bunki):
         if LeyfaFletta(UndirBunki,Bunki):
             Bunki.append(UndirBunki.pop())
+            return True
         else:
-            Villa()
+            return False
