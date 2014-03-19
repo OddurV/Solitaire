@@ -89,7 +89,7 @@ class Spilari:
         if LeyfilegLokahreyfing(Bunki[-1],Stafli):
             Stafli.append(Bunki[-1].pop())
             return True
-        else
+        else:
             return False
             
     

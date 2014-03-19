@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#ODDUR ER AÐ VINNA Í ÞESSARI SKRÁ!
 from Spilastokkur import *
 from Spilari import *
 from Reglur import *
