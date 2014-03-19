@@ -1,3 +1,5 @@
+# ÖSSUR ER AÐ VINNA Í ÞESSU
+
 # -*- coding: utf-8 -*-
 import unittest
 from Spilastokkur import *
@@ -187,7 +189,7 @@ class Prufur(unittest.TestCase):
                 Leikmadur.G[i].append(S.Taka())
         self.assertTrue(Sigra(Leikmadur.G))
     
-    def test_Reglur_Tapa(self):
+    def test_Reglur_Moguleikur(self):
         pass
     
     def test_Prompt_Stada(self):

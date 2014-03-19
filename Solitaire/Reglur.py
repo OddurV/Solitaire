@@ -1,3 +1,5 @@
+#ÖSSUR ER AÐ VINNA Í ÞESSU
+
 # -*- coding: utf-8 -*-
 #import Spilastokkur
 
