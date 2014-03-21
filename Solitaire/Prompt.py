@@ -282,9 +282,39 @@ def Bless():
     print "Bless."
     
 #Fall sem skrifar mynd á skjáinn þegar leikmaðurinn sigrar
+#N: Vinna()
+#F: Ekkert
+#E: Notandinn hefur verið látinn vita að hann hafi sigrað kapalinn
 def Vinna():
-    pass
+    print "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+    print "              _____  ______   _______   ___    __  _______     __             "
+    print "             /  ___||_    _| /  ___  \ |  |   |  |/   __  \   |  |            "
+    print "            |  /      |  |  /  /   \__||  |   |  ||  |  \  \  |  |            "
+    print "            |  \__    |  |  |  |       |  |   |  ||  |__/  /  |  |            "
+    print "             \__  \   |  |  |  |  ____ |  |   |  ||   __  \   |  |            "
+    print "            __  |  |  |  |  |  | |_   ||  |   |  ||  |  \  \  |__|            "
+    print "            | |_/  | _|  |_ \  \___/  ||  \___/  ||  |   \  \  __             "
+    print "            \_____/ |______| \_______/  \_______/ |__|    \__||__|            "
+    print "                                                                              "
+    print "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+    print ""
+    Leikreglur()
 
 #Fall sem skrifar mynd á skjáinn þegar leikmaðurinn tapar
+#N: Vinna()
+#F: Ekkert
+#E: Notandinn hefur verið látinn vita að hann hafi tapað
 def Tapa():
-    pass
+    print "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+    print "                       ________  ______   _______    __                       "
+    print "                      |__    __|/  __  \ /   __  \  |  |                      "
+    print "                         |  |  /  /  \  \|  |  \  \ |  |                      "
+    print "                         |  |  |  |__|  ||  |__/  / |  |                      "
+    print "                         |  |  |   __   ||   ____/  |  |                      "
+    print "                         |  |  |  |  |  ||  |       |__|                      "
+    print "                         |  |  |  |  |  ||  |        __                       "
+    print "                         |__|  |__|  |__||__|       |__|                      "
+    print "                                                                              "
+    print "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+    print ""
+    Leikreglur()
