@@ -37,3 +37,5 @@ if __name__=="__main__":
         else:
             Leikreglur()
         
+        if Sigra(Spilari.G):
+            Vinna()
