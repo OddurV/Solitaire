@@ -61,7 +61,7 @@ class Spilastokkur:
     #N: Spilastokkur.Stokka()
     #F: Spilastokkurinn hefur 52 spil
     #E: Það er búið að stokka spilastokkinn
-    def Stokka(self):	
+    def Stokka(self):
         for i in range(52):
             self.Vixla(i,random.randint(0,51))
     
