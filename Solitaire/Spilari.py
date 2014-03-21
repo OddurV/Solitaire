@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#UNDER CONSTRUCTION - ODDUR
 from Spilastokkur import *
 from Reglur import *
 from Prompt import *
@@ -16,6 +15,9 @@ class Spilari:
     #E: x er nýr leikmaður sem heldur á spilastokki og 19 bunkum í formi lista
     def __init__(self):
         self.S=Spilastokkur()
+        
+        self.Stig=0
+        
         self.E=[] #Endurvinnslubunki
         
         #Bunki 1-7
@@ -50,6 +52,7 @@ class Spilari:
                 return
             else:
                 self.Endurvinna()
+                self.Stig=self.Stig-100
         else:
             self.E.append(self.S.Taka())
 

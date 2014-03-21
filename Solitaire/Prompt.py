@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#UNDER CONSTRUCTION - ODDUR
 from Spilari import *
 
 #Tilkynningar til, og skipanir frá notanda
@@ -17,6 +16,8 @@ def Adgerd():
 #F: Ekkert
 #E: Staða spilsins 
 def Stada(Spilari):
+    #Sýni stigin
+    print "Stig: ",Spilari.Stig
     #Spilastokkurinn
     print "Fjöldi spila í spilastokknum: ", len(Spilari.S)
 
@@ -119,7 +120,7 @@ def FlettaHvad(Spilari):
         Villa()
     else:
         if Spilari.Fletta(Spilari.UB[num],Spilari.B[num]):
-            pass
+            Spilari.Stig=Spilari.Stig+5
         else:
             Villa()
 
@@ -143,13 +144,13 @@ def HreyfaHvad(Spilari):
         #Hér er verið að færa spil í einn af venjulegu bunkunum 7
         elif b2>0 and b2<8:
             if Spilari.Hreyfa(Spilari.E,Spilari.B[b2-1],Spilari.UB[b2-1], len(Spilari.E) - 1):
-                pass
+                Spilari.Stig=Spilari.Stig+5
             else:
                 Villa()
         #Hér er verið að færa spil í einn af stöflunum 4
         else:
             if Spilari.LokaHreyfing(Spilari.E,Spilari.G[b2-8]):
-                pass
+                Spilari.Stig=Spilari.Stig+10
             else:
                 Villa()
     #Ef 0<b1<8 þá er verið að færa spil úr einum af venjulegu bunkunum 7
@@ -166,7 +167,7 @@ def HreyfaHvad(Spilari):
         #Hér er verið að færa spil í einn af stöflunum 4
         else:
             if Spilari.LokaHreyfing(Spilari.B[b1-1],Spilari.G[b2-8]):
-                pass
+                Spilari.Stig=Spilari.Stig+10
             else:
                 Villa()
     #Ef b1>7 þá er verið að færa spil úr einum af stöflunum 4
@@ -177,7 +178,7 @@ def HreyfaHvad(Spilari):
         #Hér er verið að færa spil í einn af venjulegu bunkunum 7
         elif b2>0 and b2<8:
             if Spilari.Hreyfa(Spilari.G[b1-8],Spilari.B[b2-1],Spilari.UB[b2-1],num):
-                pass
+                Spilari.Stig=Spilari.Stig-15
             else:
                 Villa()
         #Það má ekki taka spil úr stafla og setja það í annan stafla
