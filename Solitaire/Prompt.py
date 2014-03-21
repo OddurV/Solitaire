@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#UNDER CONSTRUCTION - ODDUR
 from Spilari import *
 
 #Tilkynningar til, og skipanir frá notanda
@@ -137,14 +138,11 @@ def HreyfaHvad(Spilari):
     if b1==0:
         #Ef b2==0 þá er verið að reyna að setja spil í endurvinnslubunkan
         #Það er bannað.
-        
-        num = len(Spilari.E) - 1
-        
         if b2==0:
             Villa()
         #Hér er verið að færa spil í einn af venjulegu bunkunum 7
         elif b2>0 and b2<8:
-            if Spilari.Hreyfa(Spilari.E,Spilari.B[b2-1],Spilari.UB[b2-1], num):
+            if Spilari.Hreyfa(Spilari.E,Spilari.B[b2-1],Spilari.UB[b2-1], len(Spilari.E) - 1):
                 pass
             else:
                 Villa()

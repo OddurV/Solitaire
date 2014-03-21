@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#UNDER CONSTRUCTION - ODDUR
 from Spilastokkur import *
 from Spilari import *
 from Reglur import *
