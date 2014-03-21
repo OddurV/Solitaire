@@ -113,10 +113,16 @@ def VilByrja(x):
 #F: Spilari er af taginu Spilari
 #E: Kallað hefur verið á Fletta með þeim viðföngum sem notandinn skilgreindi
 def FlettaHvad(Spilari):
-    num=int(raw_input("Í hvaða bunka er spilið sem á að fletta? "))-1
+    num=raw_input("Í hvaða bunka er spilið sem á að fletta? ")
+    if num=="1" or num=="2" or num=="3" or num=="4" or num=="5" or num=="6" or num=="7":
+        #Hleypi ekki inn rugl strengjum
+        num=int(num)-1
+    else:
+        FlettaHvad(Spilari)
+        return
     print ""
     
-    if num<1 or num>7:
+    if num<1 or num>6:
         Villa()
     else:
         if Spilari.Fletta(Spilari.UB[num],Spilari.B[num]):
@@ -129,10 +135,31 @@ def FlettaHvad(Spilari):
 #F: Spilari er af taginu Spilari
 #E: Kallað hefur verið á Hreyfa(*) með þeim viðföngum sem notandinn skilgreindi
 def HreyfaHvad(Spilari):
-    b1=int(raw_input("Taka spil úr bunka númer: "))
+    b1=raw_input("Taka spil úr bunka númer: ")
+    if b1=="0" or b1=="1" or b1=="2" or b1=="3" or b1=="4" or b1=="5" or b1=="6" or b1=="7" or b1=="8" or b1=="9" or b1=="10" or b1=="11":
+        #Hleypi ekki inn rugl strengjum
+        b1=int(b1)
+    else:
+        HreyfaHvad(Spilari)
+        return
     if b1 != 0:
-        num=int(raw_input("Byrja á spili númer: "))-1
-    b2=int(raw_input("Setja í bunka númer: "))
+        num=raw_input("Byrja á spili númer: ")
+        if num=="1" or num=="2" or num=="3" or num=="4" or num=="5" or num=="6" or num=="7" or num=="8" or num=="9" or num=="10" or num=="11" or num=="12" or num=="13":
+            #Hleypi ekki inn rugl strengjum
+            num=int(num)-1
+            if num>len(Spilari.B[b1]):
+                HreyfaHvad(Spilari)
+                return
+        else:
+            HreyfaHvad(Spilari)
+            return
+    b2=raw_input("Setja í bunka númer: ")
+    if b2=="0" or b2=="1" or b2=="2" or b2=="3" or b2=="4" or b2=="5" or b2=="6" or b2=="7" or b2=="8" or b2=="9" or b2=="10" or b2=="11":
+        #Hleypi ekki inn rugl strengjum
+        b2=int(b2)
+    else:
+        HreyfaHvad(Spilari)
+        return
     print ""
     
     #Ef b1==0 þá er verið að taka efsta spilið úr endurvinnslubunkanum
