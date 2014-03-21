@@ -43,7 +43,8 @@ def LeyfilegLokahreyfing(Spil, Stafli):
             return False
     efstaSpilStafla  = Stafli[-1]
     rjettGildiZ = (Spil.gildi == efstaSpilStafla.gildi+1)
-    rjettSortZ = (Spil.sort == efstaSpilStafla)
+    print efstaSpilStafla
+    rjettSortZ = (Spil.sort == efstaSpilStafla.sort)
     return rjettGildiZ and rjettSortZ
     
 #Fall sem athugar hvort að það má snúa við efsta spilinu í undirbunkanum
