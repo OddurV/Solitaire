@@ -16,8 +16,8 @@ def Adgerd():
 #F: Ekkert
 #E: Staða spilsins 
 def Stada(Spilari):
-    #Sýni stigin
-    print "Stig: ",Spilari.Stig
+    #Sýni stigin og tímann
+    print "Stig: ",Spilari.Stig,"    Tími: ",int(Spilari.EndTime-Spilari.StartTime)
     #Spilastokkurinn
     print "Fjöldi spila í spilastokknum: ", len(Spilari.S)
 

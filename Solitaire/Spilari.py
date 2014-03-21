@@ -2,6 +2,7 @@
 from Spilastokkur import *
 from Reglur import *
 from Prompt import *
+import time
 
 #Leikmaðurinn heldur á öllum bunkunum 
 #og getur hreyft spil á milli þeirra
@@ -17,7 +18,8 @@ class Spilari:
         self.S=Spilastokkur()
         
         self.Stig=0
-        
+        self.StartTime=time.time()
+        self.EndTime=time.time()
         self.E=[] #Endurvinnslubunki
         
         #Bunki 1-7

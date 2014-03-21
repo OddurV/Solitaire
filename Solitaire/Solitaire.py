@@ -3,7 +3,7 @@ from Spilastokkur import *
 from Spilari import *
 from Reglur import *
 from Prompt import *
-
+import time
 
 
 if __name__=="__main__":
@@ -13,6 +13,7 @@ if __name__=="__main__":
     
     #Leikjalykkja
     while True:
+        Leikmadur.EndTime=time.time()
         Stada(Leikmadur)
         Leikreglur()
         x=Adgerd()
