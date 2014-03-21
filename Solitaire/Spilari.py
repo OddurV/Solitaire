@@ -72,8 +72,6 @@ class Spilari:
     #   skilar fallið True og hefur verið færð úr bunka 1 yfir í bunka 2.
     #   Ef ólöglegt er engin hreyfing framkvæmd og fallið skilar False
     def Hreyfa(self,Bunki1,Bunki2,UndirBunki2,num):
-        print "len: ",len(Bunki1)
-        print "num: ",num
         if len(Bunki1)==0 or num>len(Bunki1):
             return False
         if LeyfilegHreyfing(Bunki2,UndirBunki2,Bunki1[num]):
