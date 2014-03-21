@@ -8,34 +8,32 @@ from Prompt import *
 
 if __name__=="__main__":
     #Stilli upp fyrsta leiknum
-    Spilari=Spilari()
+    Leikmadur=Spilari()
     Byrjun()
     
     #Leikjalykkja
     while True:
-        Stada(Spilari)
+        Stada(Leikmadur)
         Leikreglur()
         x=Adgerd()
         if Stoppa(x):
             Bless()
             break
         elif VilDraga(x):
-            Spilari.Draga()
+            Leikmadur.Draga()
         elif VilHreyfa(x):
-            HreyfaHvad(Spilari)
+            HreyfaHvad(Leikmadur)
         elif VilFletta(x):
-            FlettaHvad(Spilari)
+            FlettaHvad(Leikmadur)
         elif VilByrja(x):
-            print ""
-            print "Þessi skipun virkar ekki núna."
-            print "Vinsamlegast endurræstu leikin til að byrja aftur."
-            break
-        #    Spilari=Spilari()
-        #    Byrjun()
+            Leikmadurinn=Spilari()
+            del Leikmadur
+            Leikmadur=Leikmadurinn
+            Byrjun()
         elif Hjalp(x):
             Leikreglur()
         else:
             Leikreglur()
         
-        if Sigra(Spilari.G):
+        if Sigra(Leikmadur.G):
             Vinna()
