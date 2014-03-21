@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#UNDER CONSTRUCTION WARNING - Oddur er að aflúsa kóðann
 from Spilari import *
 
 #Tilkynningar til, og skipanir frá notanda

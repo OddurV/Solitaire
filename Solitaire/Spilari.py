@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#UNDER CONSTRUCTION WARNING - Oddur er að aflúsa kóðann
 from Spilastokkur import *
 from Reglur import *
 from Prompt import *
@@ -73,6 +72,10 @@ class Spilari:
     #   skilar fallið True og hefur verið færð úr bunka 1 yfir í bunka 2.
     #   Ef ólöglegt er engin hreyfing framkvæmd og fallið skilar False
     def Hreyfa(self,Bunki1,Bunki2,UndirBunki2,num):
+        print "len: ",len(Bunki1)
+        print "num: ",num
+        if len(Bunki1)==0 or num>len(Bunki1):
+            return False
         if LeyfilegHreyfing(Bunki2,UndirBunki2,Bunki1[num]):
             temp=[]
             x=len(Bunki1)
@@ -91,6 +94,8 @@ class Spilari:
     #   skilar fallið True og hefur verið færð úr bunka 1 yfir í bunka 2.
     #   Ef ólöglegt er engin hreyfing framkvæmd og fallið skilar False
     def LokaHreyfing(self, Bunki, Stafli):
+        if len(Bunki)==0:
+            return False
         if LeyfilegLokahreyfing(Bunki[-1],Stafli):
             Stafli.append(Bunki.pop())
             return True
