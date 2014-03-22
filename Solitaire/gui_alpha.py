@@ -12,14 +12,19 @@ class MyApp(wx.App):
 
 class MyFrame(wx.Frame):    
     def __init__(self, parent, id=wx.ID_ANY, title="",
-                 pos=wx.DefaultPosition, size=(500, 250),
+                 pos=wx.DefaultPosition, size=(1280, 720),
                  style=wx.DEFAULT_FRAME_STYLE,
                  name="MyFrame"):
         super(MyFrame, self).__init__(parent, id, title, pos, size, style, name)
 
         self.panel = wx.Panel(self)
 
-        self.btn=wx.Button(parent=self, id=-1, label="Go")
+        
+        btn = "./Myndir/h1.jpg"
+        image1 = wx.Image(btn, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+        self.btn=wx.BitmapButton(self.panel, id=-1, bitmap=image1,
+            pos=(10, 348), size = (image1.GetWidth()+5, image1.GetHeight()+5))
+        self.btn.Bind(wx.EVT_LEFT_DOWN, self.B1Click)
         
         self.delta = ((0, 0))
         self.Bind(wx.EVT_LEFT_DOWN, self.onDown)
@@ -46,12 +51,14 @@ class MyFrame(wx.Frame):
         self.SetMenuBar(menu_bar)
 
 
+    def B1Click(self,event):
+        self.SetTitle("B1 clicked")
+
     def onDown(self, event):
         event.Skip()
 
     def onButton(self, event):
         self.btn.CaptureMouse()
-        self.btn.SetSize(self.btn.GetDefaultSize())
         x, y = self.ScreenToClient(self.btn.ClientToScreen(event.GetPosition()))
         originx, originy = self.btn.GetPosition()
         dx = x - originx
