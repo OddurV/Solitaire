@@ -35,10 +35,10 @@ class Spilastokkur:
     #E: S er nýr spilastokkur með 52 spilum í handahófskenndri röð
     def __init__(self):
         self.listi=[]
-        p="Myndir/"
+        self.p="Myndir/"
         for i in ["H","S","T","L"]:
             for j in range(1,14):
-                self.listi.append(Spil(i,j,p+i+str(j)+".jpg"))
+                self.listi.append(Spil(i,j,self.p+i+str(j)+".jpg"))
         self.Stokka()
     
     #Fall sem skilar spili úr listanum á þægilegan hátt
