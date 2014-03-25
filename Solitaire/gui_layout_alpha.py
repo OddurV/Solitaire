@@ -2,14 +2,34 @@ import wx
 
 class MyFrame(wx.Frame):
     """make a frame, inherits wx.Frame, add a panel and button"""
-    def __init__(self):
+    def __init__(self,size):
         # create a frame, no parent, default to wxID_ANY
         wx.Frame.__init__(self, None, wx.ID_ANY, 'wxBitmapButton',
             pos=(300, 150), size=(1280, 720))
         # panel needed to display button correctly
         self.panel1 = wx.Panel(self, -1)
+        self.size = size
+        super(MyFrame, self).__init__(size)
+
+        #Gerir Bakgrunn
+        self.stippleimage = wx.Image("backgroundPlaceholder.jpg").ConvertToBitmap()
+        idc = wx.MemoryDC(self.stippleimage)
+        self.stipplebackground = wx.MemoryDC()
+        self.stipplebackground.SelectObject(wx.EmptyBitmap(*self.size))
+        x = y = 0
+        while True:
+            self.stipplebackground.Blit(x, y, self.stippleimage.GetWidth(), self.stippleimage.GetHeight(), idc, 0, 0)
+            x = x + self.stippleimage.GetWidth()
+            if x  > self.size[0]:
+                x = 0
+                y = y + Frame.stippleimage.GetHeight()
+                if y > self.size[1]:
+                    break
+        self.InitBuffer()
+        dc = wx.MemoryDC()
+        dc.SelectObject(self.buffer)
         
-        # pick a button image file you have (.bmp .jpg .gif or .png)
+        #Skilgreinir stadsettningu takka og tengir thad ad klikkað se a tha vid event
 
         B1 = "./Myndir/h1.jpg"
         image1 = wx.Image(B1, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
@@ -91,6 +111,8 @@ class MyFrame(wx.Frame):
 
             # show the frame
         self.Show(True)
+
+    #Placeholder fyrir events thegar klikkad er a takkana
 
     def B1Click(self,event):
         self.SetTitle("B1 clicked")
