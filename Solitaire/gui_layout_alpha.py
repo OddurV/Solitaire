@@ -53,17 +53,17 @@ class MyFrame(wx.Frame):
             pos=(874, 348), size = (image7.GetWidth()+5, image7.GetHeight()+5))
         self.button7.Bind(wx.EVT_BUTTON, self.B7Click)
 
-        E = "./Myndir/h8.jpg"
-        image8 = wx.Image(E, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+        S = "./Myndir/h8.jpg"
+        image8 = wx.Image(S, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
         self.button1 = wx.BitmapButton(self.panel1, id=-1, bitmap=image8,
             pos=(10, 20), size = (image1.GetWidth()+5, image1.GetHeight()+5))
-        self.button1.Bind(wx.EVT_BUTTON, self.EClick)
+        self.button1.Bind(wx.EVT_BUTTON, self.SClick)
 
-        S = "./Myndir/h9.jpg"
-        image9 = wx.Image(S, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+        E = "./Myndir/h9.jpg"
+        image9 = wx.Image(E, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
         self.button2 = wx.BitmapButton(self.panel1, id=-1, bitmap=image9,
             pos=(154, 20), size = (image2.GetWidth()+5, image2.GetHeight()+5))
-        self.button2.Bind(wx.EVT_BUTTON, self.SClick)
+        self.button2.Bind(wx.EVT_BUTTON, self.EClick)
 
         G1 = "./Myndir/h10.jpg"
         image10 = wx.Image(G1, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
