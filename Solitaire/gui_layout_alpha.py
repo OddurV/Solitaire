@@ -11,7 +11,7 @@ class MyFrame(wx.Frame):
         self.panel1 = wx.Panel(self, -1)
         self.size = size
         super(MyFrame, self).__init__(size)
-
+        '''
         #Gerir Bakgrunn
         self.stippleimage = wx.Image("backgroundPlaceholder.jpg").ConvertToBitmap()
         idc = wx.MemoryDC(self.stippleimage)
@@ -29,9 +29,9 @@ class MyFrame(wx.Frame):
         self.InitBuffer()
         dc = wx.MemoryDC()
         dc.SelectObject(self.buffer)
-        
+        ###
         #Skilgreinir stadsettningu takka og tengir thad ad klikkað se a tha vid event
-
+        '''
         B1 = "./Myndir/h1.jpg"
         image1 = wx.Image(B1, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
         self.button1 = wx.BitmapButton(self.panel1, id=-1, bitmap=image1,
