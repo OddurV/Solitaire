@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Spilari import *
+import shelve
 
 #Tilkynningar til, og skipanir frá notanda
 
@@ -318,3 +319,14 @@ def Tapa():
     print "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
     print ""
     Leikreglur()
+    
+#Fall sem prentar topplistann
+def Topplisti():
+    skuffa=shelve.open("HiScore.txt")
+    tmp=[]
+    for i in skuffa:
+        tmp.append(skuffa[i])
+    tmp.sort(key=lambda variable: variable[1])
+    for i in range(len(tmp)):
+        print tmp.pop()
+    skuffa.close()

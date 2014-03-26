@@ -3,6 +3,7 @@ from Spilastokkur import *
 from Reglur import *
 from Prompt import *
 import time
+import shelve
 
 #Leikmaðurinn heldur á öllum bunkunum 
 #og getur hreyft spil á milli þeirra
@@ -117,3 +118,31 @@ class Spilari:
             return True
         else:
             return False
+            
+    #Fall sem bætir stigunum manns inn í topplista ef þau eru nógu mörg
+    #N: Spilari.BreytaTopplista()
+    #F: Ekkert
+    #E: Búið er að bæta stigum leikmannsins í topplistann ef þau voru 
+    #   nógu mörg til að hann kæmist inn í topp 10.
+    def BreytaTopplista(self):
+        skuffa=shelve.open("HiScore.txt")
+        tmp=[]
+        for i in skuffa:
+            tmp.append(skuffa[i])
+        if len(tmp)<10:
+            nafn=raw_input("Þú komst á topplistann! Hvað er nafnið þitt? ")
+            skuffa[len(tmp)]=nafn,stig
+            skuffa.close()
+            return True
+        else:
+            tmp.sort(key=lambda variable: variable[1])
+            if self.Stig>tmp[0][1]:
+                nafn=raw_input("Þú komst inn á topplistann! Hvað er nafnið þitt? ")
+                skuffa[len(tmp)]=nafn,stig
+                skuffa.close()
+                return True
+            else:
+                print "Þú komst ekki inn á topplistann."
+                skuffa.close()
+                return False
+         

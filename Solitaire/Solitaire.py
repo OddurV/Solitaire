@@ -4,6 +4,7 @@ from Spilari import *
 from Reglur import *
 from Prompt import *
 import time
+import shelve
 
 
 if __name__=="__main__":
@@ -15,7 +16,6 @@ if __name__=="__main__":
     while True:
         Leikmadur.EndTime=time.time()
         Stada(Leikmadur)
-        Leikreglur()
         x=Adgerd()
         if Stoppa(x):
             Bless()
@@ -38,3 +38,5 @@ if __name__=="__main__":
         
         if Sigra(Leikmadur.G):
             Vinna()
+            if Leikmadur.BreytaTopplista():
+                Topplisti()
