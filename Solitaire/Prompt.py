@@ -143,12 +143,12 @@ def HreyfaHvad(Spilari):
     else:
         HreyfaHvad(Spilari)
         return
-    if b1 != 0:
+    if b1 > 0 and b1 < 8:#Ath breytingar hér (var b1 != 0)
         num=raw_input("Byrja á spili númer: ")
         if num=="1" or num=="2" or num=="3" or num=="4" or num=="5" or num=="6" or num=="7" or num=="8" or num=="9" or num=="10" or num=="11" or num=="12" or num=="13":
             #Hleypi ekki inn rugl strengjum
             num=int(num)-1
-            if num>=len(Spilari.B[b1]):
+            if num>=len(Spilari.B[num]):
                 HreyfaHvad(Spilari)
                 return
         else:
@@ -204,8 +204,8 @@ def HreyfaHvad(Spilari):
         if b2==0:
             Villa()
         #Hér er verið að færa spil í einn af venjulegu bunkunum 7
-        elif b2>0 and b2<8:
-            if Spilari.Hreyfa(Spilari.G[b1-8],Spilari.B[b2-1],Spilari.UB[b2-1],num):
+        elif b2>0 and b2<8 and len(Spilari.G[b1-8])>0:#Ath breytingar (bætti við síðasta and skilyrðinu)
+            if Spilari.Hreyfa(Spilari.G[b1-8],Spilari.B[b2-1],Spilari.UB[b2-1],len(Spilari.G[b1-8])-1):#Ath breytingar (skipti út síðustu breytunni (var num))
                 Spilari.Stig=Spilari.Stig-15
             else:
                 Villa()
