@@ -148,7 +148,7 @@ def HreyfaHvad(Spilari):
         if num=="1" or num=="2" or num=="3" or num=="4" or num=="5" or num=="6" or num=="7" or num=="8" or num=="9" or num=="10" or num=="11" or num=="12" or num=="13":
             #Hleypi ekki inn rugl strengjum
             num=int(num)-1
-            if num>len(Spilari.B[b1]):
+            if num>=len(Spilari.B[b1]):
                 HreyfaHvad(Spilari)
                 return
         else:
