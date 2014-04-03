@@ -1,4 +1,3 @@
-
 import pygame
 from pygame.locals import *
 
@@ -106,7 +105,7 @@ if __name__ == "__main__":
     '''
     
     menu = Menu()
-    menu.init(['Start','Highscore', 'Rules','Quit'], surface)
+    menu.init(['Byrja','Topplisti', 'Reglur','Stoppa'], surface)
     menu.draw()
     pygame.key.set_repeat(200,50)
     pygame.display.set_caption('Klondike Solitaire')
