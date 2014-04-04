@@ -3,82 +3,38 @@ import random
 import pygame.image
 import pygame.rect
 import os.path
-
-#Stillingar fyrir myndirnar
-class Stillingar:
-    Upplausn=(124,174)
-    Upphafs_bil=10
-    Linubil=30
-    Spassia=20
-    Flis_litid_bil=5
-    Flis_stort_bil=15
-    Hradi=500
-
-#Fall sem hleður inn myndum
-def HladaMynd(spil) :
-    mynd =  pygame.image.load(spil.path)
-    return image.convert_alpha()
-
-    #Einfaldur klasi sem allir aðrir hlutir nota
-class AbstractHlutur(object):
-    def __init__(self, nafn, stadsetning):
-        #Nafn hlutsins
-        self.nafn=nafn
-        #Staðsetning hlutsins (byrjar sem 0-víddar rétthyrningur)
-        self.rammi=pygame.Rect(stadsetning[0],stadsetning[1],0,0)
-        
-    #Athuga hvort að x,y staðsetning er í hlutnum
-    def hefStadsetningu(self, stadsetning):
-        if not self.synilegt:return False
-        return self.rammi.collidepoint(stadsetning)
-    
-    #Athuga hvort að það er árekstur
-    def hefArekstur(self, hlutur):
-        return self.rammi.colliderect(hlutur.rammi)
-    
-    #Skilar x,y staðsetningunni úr self.rammi
-    def faStadsetningu(self):
-        return (self.rammi.x, self.rammi.y)
-    
-    #Set staðsetningu
-    def setjaStadsetningu(self,stadsetning):
-        self.rammi.x, self.rammi.y = stadsetning[0], stadsetning[1]
-    
-    #Hreyfi staðsetninguna
-    def hreyfaStadsetningu(self,hreyfa):
-        self.rammi.move_ip(hreyfa)
-
-#Hlutur sem hefur mynd tengda við hann
-class AbstractMynd(AbstractHlutur):
-    def __init__(self, nafn, stadsetning, mynd):
-        AbstractHlutur.__init__(self, nafn, stadsetning)
-        #Allir hlutir hafa skilgreinda mynd
-        self.mynd=self.setjaMynd(mynd)
-        #Á að teikna hlutinn eða ekki
-        self.synilegt=True
-        
-    #Einföld teikniskipun sem þarf undirklasa til að vera gagnleg
-    def teikna(self, skjar):
-        if self.synilegt:
-            skjar.blit(mynd, self.rammi)
-    
-    #Hver hlutur er tengdur við mynd. Um leið og myndinni hefur verið
-    #hlaðið inn þarf að uppfæra self.rammi tilviksbreytuna
-    def setjaMynd(self,mynd):
-        hlada=HladaMynd(mynd)
-        self.rammi.w,self.rammi.h=hlada.get_width(),hlada.get_height()
-        return hlada
+import GUI_hlutur as hlutur
+from pygame.locals import *
 
 #Spil
-class Spil(AbstractMynd):
+class Spil(hlutur.AbstractMynd):
+    #Bakhliðin er geymd hér, hún er sú sama fyrir öll spilin
+    #Hún er upphafsstillt með self.HladaBakhlid()
+    bakhlid=None
+    
+    #Þar sem static er hlaðið inn á undan __main__ þá er ekki hægt að hlaða
+    #bakhliðinni strax. Þetta er vegna þess að HladaMynd() kallar á 
+    #pygame fall (convert_alpha) sem þarfnast kalls á pygame.init()
+    #Það er hægt að nota þetta static fall til að hlaða bakhliðinni
+    @staticmethod
+    def HladaBakhlid(self): #athuga að nota self.path í staðinn?
+        Spil.bakhlid=hlutur.HladaMynd(self)
+        
+    #Litir spilanna
+    RAUTT=1
+    SVART=2
+    
     #Fastayrðing gagna:
     #Hvert spil hefur sort (hjarta, spaði, tígull eða lauf) og 
     #gildi (1-13) og tilvísun (path) í mynd af sjálfu sér
-    def __init__(self, sort, gildi, path):
-        AbstractMynd.__init__(self,sort+str(gildi),stadsetning,path)
+    def __init__(self, sort, gildi, stadsetning):
+        hlutur.AbstractMynd.__init__(self,sort+str(gildi),stadsetning,"Myndir/"+sort+str(gildi)+".jpg")
         self.sort=sort
         self.gildi=gildi
-        self.path=path #Slóð fyrir myndina sem er notuð í GUI
+        self.path="Myndir/"+sort+str(gildi)+".jpg" #Slóð fyrir myndina sem er notuð í GUI
+        self.stafli=None
+        self.snyrUpp=True
+        
         
     #Fall sem skilar streng sem táknar spilið (t.d. H1 fyrir hjartaás)
     #N: Spil1
@@ -94,8 +50,22 @@ class Spil(AbstractMynd):
     def __eq__(self, other):
         return self.sort == other.sort and self.gildi == other.gildi
     
+    #def faGildi(self): return self.gildi
+    #def faSort(self): return self.sort
+    def faLit(self):
+        if self.sort=="h" or self.sort=="t": return Spil.RAUTT
+        return Spil.SVART
+    
+    def samiLitur(self,spil):
+        return self.faLit()==spil.faLit()
+    
+    def teikna(self,skjar):
+        if self.synilegt:
+            mynd=self.mynd if self.snyrUpp else Spil.bakhlid
+            skjar.blit(mynd,self.rammi)
+    
 #Spilastokkur
-class Spilastokkur:
+class Spilastokkur(AbstractMargfaldurStafli):
     #Fastayrðing gagna:
     #Spilastokkurinn inniheldur lista sem byrjar með 52 spilum
 
@@ -107,7 +77,7 @@ class Spilastokkur:
         self.p="Myndir/"
         for i in ["h","s","t","l"]:
             for j in range(1,14):
-                self.listi.append(Spil(i,j,self.p+i+str(j)+".jpg"))
+                self.listi.append(Spil(i,j,self.p+i+str(j)+".jpg"))#skipta út path fyrir pos
         self.Stokka()
     
     #Fall sem skilar spili úr listanum á þægilegan hátt
