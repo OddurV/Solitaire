@@ -8,7 +8,7 @@ import pygame.rect
 import os.path
 import re
 import Reglur
-import Buttons
+import Buttons  #Klassi af pygame siduni sem byr til takka, litilega breyttur
 from Spilastokkur import*
 
 

@@ -6,13 +6,20 @@ from SolitaireGui import*
 
 from pygame.locals import* 
 
+#Main menu fyrir leikinn
 
 FPS = 30
 clock = pygame.time.Clock()
 
+#Fall skilgreint med tilvisun i SolitaireGui til ad geta kallad a thad
+# og hafid leikinn
+
 def Game_Run():
     game = Game()
     return game.start()
+
+
+#Oll uppbygging á valmyndini er i eftirfaarandi klasa
 
 class Menu:
     selections = []
@@ -112,6 +119,7 @@ if __name__ == "__main__":
     background_surface = pygame.image.load(background)
     screen.blit(background_surface, (0,0)) 
     '''
+    #Hljodum og texta baett vid.
     
     menu = Menu()
     menu.init(['Byrja','Topplisti', 'Reglur','Stoppa'], surface)
@@ -130,6 +138,8 @@ if __name__ == "__main__":
     icon = pygame.image.load('data/images/icon.jpg')      
     pygame.display.set_icon(icon)
     menu_music.play(loops=-1)
+
+    #Gangvirkni valmyndarinnar utfaerd sem while-loop
     
     while True:
         for event in pygame.event.get():
