@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Spilari import *
 import shelve
+import random
 
 #Tilkynningar til, og skipanir frá notanda
 
@@ -281,6 +282,8 @@ def Byrjun():
 #E: Kveðja til notandans hefur verið skrifuð á staðalúttak
 def Bless():
     print "Bless."
+    if random.randint(0,10000)==1:
+        print "... Drusla."
     
 #Fall sem skrifar mynd á skjáinn þegar leikmaðurinn sigrar
 #N: Vinna()

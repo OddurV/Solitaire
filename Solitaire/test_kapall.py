@@ -6,6 +6,7 @@ from Solitaire import *
 from Reglur import *
 from Prompt import *
 from Spilari import *
+import shelve
 
 class Prufur(unittest.TestCase):
     def test_Spil_Eiginleikar(self):
@@ -214,7 +215,8 @@ class Prufur(unittest.TestCase):
         Leikmadur.B[0][0] = Spil("H",3,"")
         self.assertTrue(Moguleikur(Leikmadur))
             
-        
+    def test_Spilari_BreytaTopplista(self):
+        pass
     
     def test_Prompt_Stada(self):
         print ""

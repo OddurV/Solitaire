@@ -2,7 +2,7 @@
 import pygame.image
 import pygame.rect
 import os.path
-from Spilastokkur import Spil
+from Spilastokkur import *
 
 #Stillingar fyrir myndirnar
 class Stillingar:
@@ -69,3 +69,12 @@ class AbstractMynd(AbstractHlutur):
         self.rammi.w,self.rammi.h=hlada.get_width(),hlada.get_height()
         return hlada
 
+#Einfalt ílát fyrir spil. seinni staflar munu nota þetta sem yfirklasa
+#Myndin táknar tóman stafla
+class AbstractStafli(AbstractMynd):
+    def __init__(self,nafn,stadsetning,mynd,spilalisti=[]):
+        AbstractMynd.__init__(self.nafn,stadsetning,mynd)
+        self.spilalisti=[]
+        self.baetavidSpilum(spilalisti)
+        #Vantar meira
+    

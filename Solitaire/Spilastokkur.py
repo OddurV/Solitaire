@@ -36,7 +36,7 @@ class Spilastokkur:
     def __init__(self):
         self.listi=[]
         self.p="Myndir/"
-        for i in ["H","S","T","L"]:
+        for i in ["h","s","t","l"]:
             for j in range(1,14):
                 self.listi.append(Spil(i,j,self.p+i+str(j)+".jpg"))
         self.Stokka()
