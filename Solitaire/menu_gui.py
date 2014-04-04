@@ -1,3 +1,4 @@
+# -*- coding: cp1252 -*-
 import pygame
 import Interface_Grunnur
 import Reglubok
