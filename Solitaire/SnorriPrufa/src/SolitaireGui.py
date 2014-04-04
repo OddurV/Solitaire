@@ -6,6 +6,7 @@ import random
 import pygame.image
 import pygame.rect
 import os.path
+import re
 import Reglur
 from Spilastokkur import*
 
@@ -52,6 +53,12 @@ class AbstractObject(object):
         self.rect = pygame.Rect(pos[0], pos[1], 0, 0) 
 
     #Checks if a x, y position is in the object
+    def __len__(self):
+        return len(self.name)
+
+    def __int__(self):
+        return int(self.name)
+
     def hasPosition(self, pos) :
         if not self.visible : return False
         return self.rect.collidepoint(pos)
@@ -308,11 +315,15 @@ class Card(AbstractImage) :
 
         self.faceUp = True
 
-    def getNumber(self): int(self.name[-2:])
+    def getNumber(self):
+        number = map(str, re.findall(r'\d+', str(self.name)))
+        number = ''.join(number)
+        number = int(number)
+        return number
  
     def getSuit(self): return self.name[0]
 
-    def getColor(self) :
+    def getColor(self):
         if self.getSuit() == 't' or self.getSuit() == 'h' : return Card.RED
         else: return Card.BLACK
 
@@ -579,7 +590,7 @@ class Game :
         self.screen = self.setDisplay() #Display dimensions
         self.double_click = DoubleClick() #Double click checker
         self.move_pile = Repository('Repository') #For moving piles
-
+        
         self.cards = self.loadCards() #All the cards
         self.piles = self.populatePiles() #All the piles
 
@@ -597,6 +608,7 @@ class Game :
         random.shuffle(cards)
         return cards
 
+    
     #Place the piles (are reset the SuitPile win number down to 0)
     def populatePiles(self) :
         piles = []
@@ -638,7 +650,7 @@ class Game :
     #The lst up click will result in onDoubleClick being called 
     def gameLoop(self) :
         while True :
-            if self.winCondition() : 
+            if self.winCondition(): 
                 self.browninanMotion(2) #Move the piles around randomly if game has been won
 
             for event in pygame.event.get() :

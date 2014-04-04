@@ -2,16 +2,24 @@
 import random
 
 #Spil
+
 class Spil:
     #Fastayrðing gagna:
     #Hvert spil hefur sort (hjarta, spaði, tígull eða lauf) og 
     #gildi (1-13) og tilvísun (path) í mynd af sjálfu sér
-    def __init__(self, sort, gildi, path):
+    def __init__(self, sort, gildi, path, spil):
         self.sort=sort
         self.gildi=gildi
         self.path=path #Slóð fyrir myndina sem er notuð í GUI
+        self.spil = spil
 
-    
+
+    def __len__(self):
+        return len(self.spil)
+
+    def __int__(self):
+        return int(self.spil)
+
 
     #Fall sem skilar streng sem táknar spilið (t.d. H1 fyrir hjartaás)
     #N: Spil1
@@ -21,6 +29,7 @@ class Spil:
         if self.gildi<10:
             return ("{0}{1}".format(self.sort,"0"+str(self.gildi))) 
         return ("{0}{1}".format(self.sort,self.gildi))
+
         
     #Fall sem athugar hvort eitt spil er jafngilt öðru
     #N: Spil1==Spil2
@@ -47,7 +56,8 @@ class Spilastokkur:
         self.p="Myndir/"
         for i in ["h","s","t","l"]:
             for j in range(1,14):
-                self.listi.append(Spil(i,j,self.p+i+str(j)+".jpg"))
+                self.listi.append(Spil(i,j,self.p+i+str(j)+".jpg",
+                                       i+str(j) if j>9 else i+'0'+str(j)))
         self.Stokka()
     
     #Fall sem skilar spili úr listanum á þægilegan hátt

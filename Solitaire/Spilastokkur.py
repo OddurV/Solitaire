@@ -2,34 +2,21 @@
 import random
 
 #Spil
-
 class Spil:
     #Fastayrðing gagna:
     #Hvert spil hefur sort (hjarta, spaði, tígull eða lauf) og 
     #gildi (1-13) og tilvísun (path) í mynd af sjálfu sér
-    def __init__(self, sort, gildi, path, spil):
+    def __init__(self, sort, gildi, path):
         self.sort=sort
         self.gildi=gildi
         self.path=path #Slóð fyrir myndina sem er notuð í GUI
-        self.spil = spil
-
-
-    def __len__(self):
-        return len(self.spil)
-
-    def __int__(self):
-        return int(self.spil)
-
-
+        
     #Fall sem skilar streng sem táknar spilið (t.d. H1 fyrir hjartaás)
     #N: Spil1
     #F: Ekkert
     #E: Sort og gildi spilsins hefur verið skilað sem streng
     def __str__(self):
-        if self.gildi<10:
-            return ("{0}{1}".format(self.sort,"0"+str(self.gildi))) 
         return ("{0}{1}".format(self.sort,self.gildi))
-
         
     #Fall sem athugar hvort eitt spil er jafngilt öðru
     #N: Spil1==Spil2
@@ -37,11 +24,6 @@ class Spil:
     #E: Skilar True ef Spil1 og Spil2 eru jafngild, annars False
     def __eq__(self, other):
         return self.sort == other.sort and self.gildi == other.gildi
-
-    def __getitem__(self,sort):
-        return self.sort
-
-
 
 #Spilastokkur
 class Spilastokkur:
@@ -56,8 +38,7 @@ class Spilastokkur:
         self.p="Myndir/"
         for i in ["h","s","t","l"]:
             for j in range(1,14):
-                self.listi.append(Spil(i,j,self.p+i+str(j)+".jpg",
-                                       i+str(j) if j>9 else i+'0'+str(j)))
+                self.listi.append(Spil(i,j,self.p+i+str(j)+".jpg"))
         self.Stokka()
     
     #Fall sem skilar spili úr listanum á þægilegan hátt
@@ -110,4 +91,3 @@ class Spilastokkur:
     #E: Það er búið að bæta spil aftast í spilastokkinn
     def Leggja(self,spil):
         self.listi.append(spil)
-
