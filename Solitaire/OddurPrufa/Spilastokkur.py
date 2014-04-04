@@ -15,37 +15,18 @@ class Stillingar:
     Hradi=500
 
 #Fall sem hleður inn myndum
-def HladaMynd(nafn_spils) :
-    mynd =  pygame.image.load(nafn_spils.path)
+def HladaMynd(spil) :
+    mynd =  pygame.image.load(spil.path)
     return image.convert_alpha()
-    
-#Spil
-class Spil:
-    #Fastayrðing gagna:
-    #Hvert spil hefur sort (hjarta, spaði, tígull eða lauf) og 
-    #gildi (1-13) og tilvísun (path) í mynd af sjálfu sér
-    def __init__(self, sort, gildi, path):
-        self.sort=sort
-        self.gildi=gildi
-        self.path=path #Slóð fyrir myndina sem er notuð í GUI
-        self.rammi.Rect(stadsetning[0],stadsetning[1],0,0)
-        self.mynd=setjaMynd(path)
-        self.synilegt=True
+
+    #Einfaldur klasi sem allir aðrir hlutir nota
+class AbstractHlutur(object):
+    def __init__(self, nafn, stadsetning):
+        #Nafn hlutsins
+        self.nafn=nafn
+        #Staðsetning hlutsins (byrjar sem 0-víddar rétthyrningur)
+        self.rammi=pygame.Rect(stadsetning[0],stadsetning[1],0,0)
         
-    #Fall sem skilar streng sem táknar spilið (t.d. H1 fyrir hjartaás)
-    #N: Spil1
-    #F: Ekkert
-    #E: Sort og gildi spilsins hefur verið skilað sem streng
-    def __str__(self):
-        return ("{0}{1}".format(self.sort,self.gildi))
-        
-    #Fall sem athugar hvort eitt spil er jafngilt öðru
-    #N: Spil1==Spil2
-    #F: other er spil
-    #E: Skilar True ef Spil1 og Spil2 eru jafngild, annars False
-    def __eq__(self, other):
-        return self.sort == other.sort and self.gildi == other.gildi
-    
     #Athuga hvort að x,y staðsetning er í hlutnum
     def hefStadsetningu(self, stadsetning):
         if not self.synilegt:return False
@@ -66,7 +47,16 @@ class Spil:
     #Hreyfi staðsetninguna
     def hreyfaStadsetningu(self,hreyfa):
         self.rammi.move_ip(hreyfa)
-    
+
+#Hlutur sem hefur mynd tengda við hann
+class AbstractMynd(AbstractHlutur):
+    def __init__(self, nafn, stadsetning, mynd):
+        AbstractHlutur.__init__(self, nafn, stadsetning)
+        #Allir hlutir hafa skilgreinda mynd
+        self.mynd=self.setjaMynd(mynd)
+        #Á að teikna hlutinn eða ekki
+        self.synilegt=True
+        
     #Einföld teikniskipun sem þarf undirklasa til að vera gagnleg
     def teikna(self, skjar):
         if self.synilegt:
@@ -79,6 +69,31 @@ class Spil:
         self.rammi.w,self.rammi.h=hlada.get_width(),hlada.get_height()
         return hlada
 
+#Spil
+class Spil(AbstractMynd):
+    #Fastayrðing gagna:
+    #Hvert spil hefur sort (hjarta, spaði, tígull eða lauf) og 
+    #gildi (1-13) og tilvísun (path) í mynd af sjálfu sér
+    def __init__(self, sort, gildi, path):
+        AbstractMynd.__init__(self,sort+str(gildi),stadsetning,path)
+        self.sort=sort
+        self.gildi=gildi
+        self.path=path #Slóð fyrir myndina sem er notuð í GUI
+        
+    #Fall sem skilar streng sem táknar spilið (t.d. H1 fyrir hjartaás)
+    #N: Spil1
+    #F: Ekkert
+    #E: Sort og gildi spilsins hefur verið skilað sem streng
+    def __str__(self):
+        return ("{0}{1}".format(self.sort,self.gildi))
+        
+    #Fall sem athugar hvort eitt spil er jafngilt öðru
+    #N: Spil1==Spil2
+    #F: other er spil
+    #E: Skilar True ef Spil1 og Spil2 eru jafngild, annars False
+    def __eq__(self, other):
+        return self.sort == other.sort and self.gildi == other.gildi
+    
 #Spilastokkur
 class Spilastokkur:
     #Fastayrðing gagna:
