@@ -663,7 +663,6 @@ class Game :
             S = int(self.TimeElapsed)
             round(S,0)
             T = str(S)
-            print(S)
             
             if self.winCondition(): 
                 self.browninanMotion(2) #Move the piles around randomly if game has been won
