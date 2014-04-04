@@ -1,13 +1,18 @@
 # -*- coding: cp1252 -*-
 import pygame
-import Interface_Grunnur
+import SolitaireGui
 import Reglubok
+from SolitaireGui import*
 
-from pygame.locals import *
+from pygame.locals import* 
 
 
 FPS = 30
 clock = pygame.time.Clock()
+
+def Game_Run():
+    game = Game()
+    return game.start()
 
 class Menu:
     selections = []
@@ -138,7 +143,7 @@ if __name__ == "__main__":
                 if event.key == K_RETURN:
                     if menu.get_position() == 0:
                         print('Byrja')
-                        mygame = Interface_Grunnur.begin()    
+                        mygame = Game_Run()    
                         mygame.play(screen)
                     if menu.get_position() == 1:
                         print('Topplisti')
