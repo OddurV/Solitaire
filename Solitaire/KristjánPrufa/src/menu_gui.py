@@ -3,6 +3,12 @@ import pygame
 import SolitaireGui
 import Reglubok
 from SolitaireGui import*
+import sys
+if not pygame.display.get_init():
+    pygame.display.init()
+
+if not pygame.font.get_init():
+    pygame.font.init()
 
 from pygame.locals import* 
 
@@ -96,12 +102,11 @@ class Menu:
         self.position_start = (x+mx, y+my)
 
 if __name__ == "__main__":
-    import sys
-    if not pygame.display.get_init():
-        pygame.display.init()
 
-    if not pygame.font.get_init():
-        pygame.font.init()
+    menu = Menu()
+    
+
+    
     
     surface = pygame.display.set_mode((720,480))
     surface.fill((0,0,0))
@@ -113,7 +118,6 @@ if __name__ == "__main__":
     screen.blit(background_surface, (0,0)) 
     '''
     
-    menu = Menu()
     menu.init(['Byrja','Topplisti', 'Reglur','Stoppa'], surface)
     menu.draw()
     pygame.key.set_repeat(200,50)

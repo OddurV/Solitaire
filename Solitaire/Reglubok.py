@@ -1,7 +1,13 @@
 # -*- coding: cp1252 -*-
 import pygame
+import Buttons
+from menu_gui import*
 
 from pygame.locals import *
+
+def Menu_Run():
+    return Menu()
+
 def display():
     pygame.init()
     screen = pygame.display.set_mode((640, 480))
@@ -53,14 +59,18 @@ def display():
     screen.blit(label, (10, 325))
     label = myfont.render("spil staflanna.", 1, (255,255,0))
     screen.blit(label, (10, 340))
-
+    
+    Button1 = Buttons.Button() 
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 done = True
-        
+            if event.type == MOUSEBUTTONDOWN and Button1.pressed(pygame.mouse.get_pos()):
+               mymenu = Menu_Run()
+               mymenu.play(screen)
+        Button1.create_button(screen, (0,0,0), 220, 380, 150,    50,    0,        "Tilbaka", (255,255,0))        ######################
         pygame.display.flip()
         clock.tick(60)
 
