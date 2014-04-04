@@ -122,7 +122,7 @@ if __name__ == "__main__":
     #Hljodum og texta baett vid.
     
     menu = Menu()
-    menu.init(['Byrja','Topplisti', 'Reglur','Stoppa'], surface)
+    menu.init(['Byrja', 'Reglur','Stoppa'], surface)
     menu.draw()
     pygame.key.set_repeat(200,50)
     pygame.display.set_caption('Klondike Solitaire')
@@ -155,13 +155,13 @@ if __name__ == "__main__":
                         print('Byrja')
                         mygame = Game_Run()    
                         mygame.play(screen)
+                    #if menu.get_position() == 1:
+                    #   print('Topplisti')
                     if menu.get_position() == 1:
-                        print('Topplisti')
-                    if menu.get_position() == 2:
                         print('Reglur')
                         mygame = Reglubok.display()
                         mygame.play(screen)
-                    if menu.get_position() == 3:
+                    if menu.get_position() == 2:
                         pygame.display.quit()
                         sys.exit()                        
                 if event.key == K_ESCAPE:
