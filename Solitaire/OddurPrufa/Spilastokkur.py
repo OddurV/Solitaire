@@ -65,19 +65,23 @@ class Spil(hlutur.AbstractMynd):
             skjar.blit(mynd,self.rammi)
     
 #Spilastokkur
-class Spilastokkur(AbstractMargfaldurStafli):
+class Spilastokkur(hlutur.AbstractMargfaldurStafli):
     #Fastayrðing gagna:
     #Spilastokkurinn inniheldur lista sem byrjar með 52 spilum
+    DRAGA=0
+    HENDA=1
 
     #N: S=Spilastokkur()
     #F: Ekkert
     #E: S er nýr spilastokkur með 52 spilum í handahófskenndri röð
-    def __init__(self):
+    def __init__(self,nafn,stadsetning,bil,botn,spilalisti=[]):
+        hlutur.AbstractMargfaldurStafli.__init__(self,nafn,stadsetning,bil)
+        self.uppsetningStafla(self.uppsetningDraga(spilalisti,botn))
+        self.uppsetningStafla(self.uppsetningHenda(botn))
         self.listi=[]
-        self.p="Myndir/"
         for i in ["h","s","t","l"]:
             for j in range(1,14):
-                self.listi.append(Spil(i,j,self.p+i+str(j)+".jpg"))#skipta út path fyrir pos
+                self.listi.append(Spil(i,j,(0,0)))#path var skipt út fyrir pos
         self.Stokka()
     
     #Fall sem skilar spili úr listanum á þægilegan hátt
@@ -130,3 +134,59 @@ class Spilastokkur(AbstractMargfaldurStafli):
     #E: Það er búið að bæta spil aftast í spilastokkinn
     def Leggja(self,spil):
         self.listi.append(spil)
+    
+    #Það þarf ekki staðsetningu fyrir uppsetningDraga og uppsetningHenda,
+    #uppsetningStafla sér um að hafa það rétt
+    def uppsetningDraga(self,spilalisti,botn):
+        draga_stafli=hlutur.AbstraktEinfaldurStafli("Draga",(0,0),botn,spilalisti)
+        draga_stafli.alltUpp(False)
+        return draga_stafli
+    
+    def uppsetningHenda(self,botn):
+        henda_stafli=hlutur.AbstraktEinfaldurStafli("Henda",(0,0),botn)
+        return henda_stafli
+    
+    #Ef það er smellt á Draga staflann
+    def dragaSmella(self):
+        if not self.staflar[Spilastokkur.DRAGA].isEmpty():
+            taka_spil=self.staflar[Spilastokkur.DRAGA].takaSpil(1)
+            taka_spil[0].snyrUpp=True
+            self.staflar[Spilastokkur.HENDA].leggjaSpil(taka_spil)
+        
+        else:
+            self.staflar[Spilastokkur.HENDA].alltUpp(False)
+            oll_spil=self.staflar[Spilastokkur.HENDA].takaAllt(oll_spil)
+            oll_spil.reverse()
+            self.staflar[Spilastokkur.DRAGA].leggjaSpil(oll_spil)
+    
+    def aSmelli(self,event):
+        smelltur_stafli=self.faStafla(event.stadsetning)
+        
+        if not smelltur_stafli: return #Til öryggis, ef það var kallað óvart á þetta
+        if not smelltur_stafli.synilegt: return
+        
+        if event.type==MOUSEBUTTONUP and event.button==1:
+            if smelltur_stafli.nafn=="Draga":
+                self.dragaSmella()
+        
+        #Endurvinnslubunkinn skilar efsta spilinu
+        if event.type==MOUSEBUTTONDOWN and event.button==1:
+            if smelltur_stafli.nafn=="Henda" and not smelltur_stafli.isEmpty(): return smelltur_stafli.takaSpil(1)
+            
+    #tvísmellur er alltaf MOUSEUP
+    #Fyrir Draga bunkann gerir þetta það sama og einfaldur smellur
+    #Henda bunkinn svarar ekki einföldum smelli, en tvöfaldur tekur efsta spilið
+    def aTvismelli(self,event):
+        smelltur_stafli=self.faStafla(event.stadsetning)
+        if not smelltur_stafli: return
+        if not smelltur_stafli.synilegt: return
+        
+        if smelltur_stafli.nafn=="Draga": self.dragaSmella()
+        if smelltur_stafli.nafn=="Henda" and not smelltur_stafli.isEmpty(): return smelltur_stafli.takaSpil(1)
+    
+    def leyfaFleiriSpil(self,spil):
+        return False
+        
+    def leggjaSpil(self,spil):
+        raise NotImplementedError
+
