@@ -3,34 +3,38 @@ import random
 import pygame.image
 import pygame.rect
 import os.path
+import GUI_hlutur as hlutur
+from pygame.locals import *
 
-#Stillingar fyrir myndirnar
-class Stillingar:
-    Upplausn=(124,174)
-    Upphafs_bil=10
-    Linubil=30
-    Spassia=20
-    Flis_litid_bil=5
-    Flis_stort_bil=15
-    Hradi=500
-
-#Fall sem hleður inn myndum
-def HladaMynd(nafn_spils) :
-    mynd =  pygame.image.load(nafn_spils.path)
-    return image.convert_alpha()
-    
 #Spil
-class Spil:
+class Spil(hlutur.AbstractMynd):
+    #Bakhliðin er geymd hér, hún er sú sama fyrir öll spilin
+    #Hún er upphafsstillt með self.HladaBakhlid()
+    bakhlid=None
+    
+    #Þar sem static er hlaðið inn á undan __main__ þá er ekki hægt að hlaða
+    #bakhliðinni strax. Þetta er vegna þess að HladaMynd() kallar á 
+    #pygame fall (convert_alpha) sem þarfnast kalls á pygame.init()
+    #Það er hægt að nota þetta static fall til að hlaða bakhliðinni
+    @staticmethod
+    def HladaBakhlid(self): #athuga að nota self.path í staðinn?
+        Spil.bakhlid=hlutur.HladaMynd(self)
+        
+    #Litir spilanna
+    RAUTT=1
+    SVART=2
+    
     #Fastayrðing gagna:
     #Hvert spil hefur sort (hjarta, spaði, tígull eða lauf) og 
     #gildi (1-13) og tilvísun (path) í mynd af sjálfu sér
-    def __init__(self, sort, gildi, path):
+    def __init__(self, sort, gildi, stadsetning):
+        hlutur.AbstractMynd.__init__(self,sort+str(gildi),stadsetning,"Myndir/"+sort+str(gildi)+".jpg")
         self.sort=sort
         self.gildi=gildi
-        self.path=path #Slóð fyrir myndina sem er notuð í GUI
-        self.rammi.Rect(stadsetning[0],stadsetning[1],0,0)
-        self.mynd=setjaMynd(mynd)
-        self.synilegt=True
+        self.path="Myndir/"+sort+str(gildi)+".jpg" #Slóð fyrir myndina sem er notuð í GUI
+        self.stafli=None
+        self.snyrUpp=True
+        
         
     #Fall sem skilar streng sem táknar spilið (t.d. H1 fyrir hjartaás)
     #N: Spil1
@@ -46,53 +50,36 @@ class Spil:
     def __eq__(self, other):
         return self.sort == other.sort and self.gildi == other.gildi
     
-    #Athuga hvort að x,y staðsetning er í hlutnum
-    def hefStadsetningu(self, stadsetning):
-        if not self.synilegt:return False
-        return self.rammi.collidepoint(stadsetning)
+    #def faGildi(self): return self.gildi
+    #def faSort(self): return self.sort
+    def faLit(self):
+        if self.sort=="h" or self.sort=="t": return Spil.RAUTT
+        return Spil.SVART
     
-    #Athuga hvort að það er árekstur
-    def hefArekstur(self, hlutur):
-        return self.rammi.colliderect(hlutur.rammi)
+    def samiLitur(self,spil):
+        return self.faLit()==spil.faLit()
     
-    #Skilar x,y staðsetningunni úr self.rammi
-    def faStadsetningu(self):
-        return (self.rammi.x, self.rammi.y)
-    
-    #Set staðsetningu
-    def setjaStadsetningu(self,stadsetning):
-        self.rammi.x, self.rammi.y = stadsetning[0], stadsetning[1]
-    
-    #Hreyfi staðsetninguna
-    def hreyfaStadsetningu(self,hreyfa):
-        self.rammi.move_ip(hreyfa)
-    
-    #Einföld teikniskipun sem þarf undirklasa til að vera gagnleg
-    def teikna(self, skjar):
+    def teikna(self,skjar):
         if self.synilegt:
-            skjar.blit(mynd, self.rammi)
+            mynd=self.mynd if self.snyrUpp else Spil.bakhlid
+            skjar.blit(mynd,self.rammi)
     
-    #Hver hlutur er tengdur við mynd. Um leið og myndinni hefur verið
-    #hlaðið inn þarf að uppfæra self.rammi tilviksbreytuna
-    def setjaMynd(self,mynd):
-        hlada=HladaMynd(mynd)
-        self.rammi.w,self.rammi.h=hlada.get_width(),hlada.get_height()
-        return hlada
-
 #Spilastokkur
-class Spilastokkur:
+class Spilastokkur(hlutur.AbstractMargfaldurStafli):
     #Fastayrðing gagna:
     #Spilastokkurinn inniheldur lista sem byrjar með 52 spilum
+    DRAGA=0
+    HENDA=1
 
-    #N: S=Spilastokkur()
-    #F: Ekkert
-    #E: S er nýr spilastokkur með 52 spilum í handahófskenndri röð
-    def __init__(self):
+
+    def __init__(self,nafn,stadsetning,bil,botn,spilalisti=[]):
+        hlutur.AbstractMargfaldurStafli.__init__(self,nafn,stadsetning,bil)
+        self.uppsetningStafla(self.uppsetningDraga(spilalisti,botn))
+        self.uppsetningStafla(self.uppsetningHenda(botn))
         self.listi=[]
-        self.p="Myndir/"
         for i in ["h","s","t","l"]:
             for j in range(1,14):
-                self.listi.append(Spil(i,j,self.p+i+str(j)+".jpg"))
+                self.listi.append(Spil(i,j,(0,0)))#path var skipt út fyrir pos
         self.Stokka()
     
     #Fall sem skilar spili úr listanum á þægilegan hátt
@@ -145,3 +132,59 @@ class Spilastokkur:
     #E: Það er búið að bæta spil aftast í spilastokkinn
     def Leggja(self,spil):
         self.listi.append(spil)
+    
+    #Það þarf ekki staðsetningu fyrir uppsetningDraga og uppsetningHenda,
+    #uppsetningStafla sér um að hafa það rétt
+    def uppsetningDraga(self,spilalisti,botn):
+        draga_stafli=hlutur.AbstraktEinfaldurStafli("Draga",(0,0),botn,spilalisti)
+        draga_stafli.alltUpp(False)
+        return draga_stafli
+    
+    def uppsetningHenda(self,botn):
+        henda_stafli=hlutur.AbstraktEinfaldurStafli("Henda",(0,0),botn)
+        return henda_stafli
+    
+    #Ef það er smellt á Draga staflann
+    def dragaSmella(self):
+        if not self.staflar[Spilastokkur.DRAGA].isEmpty():
+            taka_spil=self.staflar[Spilastokkur.DRAGA].takaSpil(1)
+            taka_spil[0].snyrUpp=True
+            self.staflar[Spilastokkur.HENDA].leggjaSpil(taka_spil)
+        
+        else:
+            self.staflar[Spilastokkur.HENDA].alltUpp(False)
+            oll_spil=self.staflar[Spilastokkur.HENDA].takaAllt(oll_spil)
+            oll_spil.reverse()
+            self.staflar[Spilastokkur.DRAGA].leggjaSpil(oll_spil)
+    
+    def aSmelli(self,event):
+        smelltur_stafli=self.faStafla(event.stadsetning)
+        
+        if not smelltur_stafli: return #Til öryggis, ef það var kallað óvart á þetta
+        if not smelltur_stafli.synilegt: return
+        
+        if event.type==MOUSEBUTTONUP and event.button==1:
+            if smelltur_stafli.nafn=="Draga":
+                self.dragaSmella()
+        
+        #Endurvinnslubunkinn skilar efsta spilinu
+        if event.type==MOUSEBUTTONDOWN and event.button==1:
+            if smelltur_stafli.nafn=="Henda" and not smelltur_stafli.isEmpty(): return smelltur_stafli.takaSpil(1)
+            
+    #tvísmellur er alltaf MOUSEUP
+    #Fyrir Draga bunkann gerir þetta það sama og einfaldur smellur
+    #Henda bunkinn svarar ekki einföldum smelli, en tvöfaldur tekur efsta spilið
+    def aTvismelli(self,event):
+        smelltur_stafli=self.faStafla(event.stadsetning)
+        if not smelltur_stafli: return
+        if not smelltur_stafli.synilegt: return
+        
+        if smelltur_stafli.nafn=="Draga": self.dragaSmella()
+        if smelltur_stafli.nafn=="Henda" and not smelltur_stafli.isEmpty(): return smelltur_stafli.takaSpil(1)
+    
+    def leyfaFleiriSpil(self,spil):
+        return False
+        
+    def leggjaSpil(self,spil):
+        raise NotImplementedError
+
