@@ -9,6 +9,7 @@ import os.path
 import re
 import Reglur
 import Buttons  #Klassi af pygame siduni sem byr til takka, litilega breyttur
+import time
 from Spilastokkur import*
 
 
@@ -654,7 +655,14 @@ class Game :
         background_position = [0, 0]                                       
         self.Button1 = Buttons.Button() 
         self.Button2 = Buttons.Button()
+        self.StartTime=time.time()
+        #myfont = pygame.font.SysFont("impact", 20)
         while True :
+            #self.EndTime=time.time()
+            #self.TimeElapsed=self.EndTime - self.StartTime
+            #print(self.TimeElapsed)
+            #T = self.TimeElapsed
+            
             if self.winCondition(): 
                 self.browninanMotion(2) #Move the piles around randomly if game has been won
 
@@ -728,9 +736,13 @@ class Game :
                     if event.type == MOUSEMOTION :
                         if self.move_pile.hasCards() : self.move_pile.movePosition(event.rel)
 
+            
             self.screen.blit(background_image, background_position)
+            #label = myfont.render((T), 1, (255,60,0))
+            #self.screen.blit(label, (560,0))
             self.Button1.create_button(self.screen, (255,0,60), 0, 0, 120,    30,    0,        "Loka Leik", (0,0,0)) 
             self.Button2.create_button(self.screen, (255,0,60), 120, 0, 120,    30,    0,        "Nyr Leikur", (0,0,0))
+            #Kommentadi thetta ut i bili, var ad koma i veg fyrir ad bakgrunnur virkadi
             #self.screen.fill((0, 0, 0))                                                                            
             self.draw()
             pygame.display.flip()

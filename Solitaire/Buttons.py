@@ -22,6 +22,7 @@ class Button:
 
     def draw_button(self, surface, color, length, height, x, y, width):           
         for i in range(1,10):
+            #Breytti thessu, fannst takkanir ferkar ljotir eins og their voru.
             s = pygame.Surface((length,height))
             s.fill(color)
             alpha = (255/(i+2))
