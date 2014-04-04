@@ -62,7 +62,7 @@ def Sigra(G):
     return len(G[0])==len(G[1]) and len(G[1])==len(G[2]) and len(G[2])==len(G[3]) and len(G[0])==13
 
 #Fall sem athugar hvort að leikmaðurinn getur eitthvað gert
-#ATH. þetta fall er nánast algjörlega tilgangslaust, nema kannski í blábyrjun
+#Athugar einnig hvort til sé bunki sem gerir sigur ómögulegan
 #N: Moguleikur(Spilari)
 #F: Spilari er hlutur af tagi Spilari
 #E: Skilar True ef það er enginn leikur mögulegur
@@ -102,4 +102,5 @@ def Moguleikur(Spilari):
         if len(stafli)!=0 :
             tapZ = tekkaBordh(stafli[-1],tapZ)    
         
+    
     return tapZ
