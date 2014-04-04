@@ -1,4 +1,7 @@
 import pygame
+import Interface_Grunnur
+import Reglubok
+
 from pygame.locals import *
 
 
@@ -132,6 +135,16 @@ if __name__ == "__main__":
                     key_down.play()
                     menu.draw(1)
                 if event.key == K_RETURN:
+                    if menu.get_position() == 0:
+                        print('Byrja')
+                        mygame = Interface_Grunnur.begin()    
+                        mygame.play(screen)
+                    if menu.get_position() == 1:
+                        print('Topplisti')
+                    if menu.get_position() == 2:
+                        print('Reglur')
+                        mygame = Reglubok.display()
+                        mygame.play(screen)
                     if menu.get_position() == 3:
                         pygame.display.quit()
                         sys.exit()                        
