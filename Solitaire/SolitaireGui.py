@@ -656,12 +656,12 @@ class Game :
         self.Button1 = Buttons.Button() 
         self.Button2 = Buttons.Button()
         self.StartTime=time.time()
-        #myfont = pygame.font.SysFont("impact", 20)
+        myfont = pygame.font.SysFont("impact", 20)
         while True :
-            #self.EndTime=time.time()
-            #self.TimeElapsed=self.EndTime - self.StartTime
+            self.EndTime=time.time()
+            self.TimeElapsed=self.EndTime - self.StartTime
             #print(self.TimeElapsed)
-            #T = self.TimeElapsed
+            T = self.TimeElapsed
             
             if self.winCondition(): 
                 self.browninanMotion(2) #Move the piles around randomly if game has been won
